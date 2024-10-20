@@ -1,0 +1,31 @@
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/presentation/MainGUI.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	
+	// Cierra la ventana actual y abre una nueva ventana con la vista especificada
+	public static void closeCurrentWindowAndOpen(String fxmlPath, Stage currentStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(Logic.class.getResource(fxmlPath));
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			Stage newStage = new Stage();
+			newStage.setScene(scene);
+			newStage.show();
+			currentStage.close();
+		} catch (IOException e) {
+			Utils.showAlert(Alert.AlertType.ERROR, "Error", "No se pudo cargar la vista.");
+		}
+	}
