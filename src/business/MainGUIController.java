@@ -40,8 +40,7 @@ public class MainGUIController extends Application {
 
 	@FXML
 	private void initialize() {
-		
-		ServerSocketOrder.connectToServer();
+		ServerSocketOrder.runServer();
 	}
 	// Event Listener on Button[#btSolicitarServicio].onAction
 	@FXML
