@@ -102,5 +102,9 @@ public class Student {
 				+ ", genero=" + genero + ", dineroDisponible=" + dineroDisponible + "]";
 	}
 
-
+	public String toStringUserData() {
+		return
+				carnet + "," + nombre + "," + correoElectronico + "," +
+				telefono + "," + estaActivo + "," + fechaIngreso + "," + genero + "," + dineroDisponible;
+	}
 }

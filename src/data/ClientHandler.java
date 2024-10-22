@@ -34,7 +34,7 @@ public class ClientHandler extends Thread {
     }
 
     // Método para enviar mensajes al cliente
-    public void sendMessage(String message) {
+    public  void sendMessage(String message) {
         if (salida != null) {
             salida.println(message);  // Enviar mensaje al cliente
         }
@@ -49,13 +49,22 @@ public class ClientHandler extends Thread {
 
                 System.out.println(answer);
                 if ("user".equals(info.get(0))) {
-                    int validationResult = LogicServer.validateUser(LogicBD.getUserID(info.get(1)), info);
+                    int validationResult = LogicServer.validateUser(LogicBD.getUserValidate(info.get(1)), info);
                     System.out.println(validationResult);
-                    sendMessage("user," + validationResult);
+                    //Envia lo datos del usuario
+                    LogicServer.message(this,validationResult,info.get(1),info.get(2));
+
+                }
+
+                if ("updateUser".equals(info.get(0))) {
+                    System.out.println(answer+" para U");
+                    sendMessage("us_confirm,"+ LogicServer.updateUser(answer));
                 }
             }
         } catch (IOException e) {
             System.out.println("Error al recibir mensajes del cliente: " + e.getMessage());
         }
     }
+
+
 }

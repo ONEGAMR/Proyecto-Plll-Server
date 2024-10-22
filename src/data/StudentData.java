@@ -63,4 +63,16 @@ public class StudentData {
             StudentData.updateJson(list);
         }
     }
+    public static Student searchStudent(String canet){
+        Student s = new Student();
+
+        for(Student stu : getStudentList()){
+            if(stu.getCarnet().equals(canet)){
+                s = stu;
+                break;
+            }
+        }
+
+        return s;
+    }
 }
