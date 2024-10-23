@@ -131,10 +131,12 @@ public class ServiceViewGUIController {
 			return;
 		}
 
+		//se obtiene la ruta para las comidas
 		String filePath = Logic.getFilePath(selectedDay, selectedMealType);
 
 		if (filePath != null) {
 			Logic.MealsJsonUtils.setFilePath(filePath);
+			System.out.println(filePath);
 			try {
 				List<Meal> meals = Logic.MealsJsonUtils.getElements(Meal.class);
 				tvMeals.setItems(FXCollections.observableArrayList(meals));

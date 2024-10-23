@@ -1,12 +1,15 @@
 package data;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import domain.Meal;
 import domain.Student;
 import domain.User;
+import javafx.collections.FXCollections;
 
 public class LogicServer {
 
@@ -67,6 +70,26 @@ public class LogicServer {
 		};
 
 		return false;
+	}
+
+	public static List<Meal> getListMeals(String route){
+		String[] routeParts = route.split(",");
+		String filePath = Logic.getFilePath(routeParts[1], routeParts[2]);
+		List<Meal> meals = new ArrayList<>();
+
+		if (filePath != null) {
+			Logic.MealsJsonUtils.setFilePath(filePath);
+			try {
+				meals = Logic.MealsJsonUtils.getElements(Meal.class);
+
+			} catch (IOException e) {
+				System.out.println("Error al cargar los datos." + e.getMessage());
+			}
+		}else{
+
+			System.out.println("No se pudo encontrar el archivo.");
+		}
+		return meals;
 	}
 
 }

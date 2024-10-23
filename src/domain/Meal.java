@@ -30,6 +30,10 @@ public class Meal {
 		return "Meal [name=" + name + ", price=" + price + "]";
 	}
 
+	public String toStringMealData() {
+		return  name + "," + price;
+	}
+
 
 
 }

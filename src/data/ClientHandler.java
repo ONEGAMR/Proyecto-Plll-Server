@@ -1,5 +1,7 @@
 package data;
 
+import domain.Meal;
+
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -56,10 +58,20 @@ public class ClientHandler extends Thread {
 
                 }
 
+                //se recibe la informacion y envia una confirmacion de update
                 if ("updateUser".equals(info.get(0))) {
                     System.out.println(answer+" para U");
                     sendMessage("us_confirm,"+ LogicServer.updateUser(answer));
                 }
+
+                //Se recibe la ruta de las comidas solicitadas y se envian
+                if ("listMeals".equals(info.get(0))) {
+                    System.out.println(info.get(0));
+                    for(Meal m : LogicServer.getListMeals(answer)){
+                        sendMessage("listMeals,"+ m.toStringMealData());
+                    }
+                }
+
             }
         } catch (IOException e) {
             System.out.println("Error al recibir mensajes del cliente: " + e.getMessage());
