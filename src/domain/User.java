@@ -15,10 +15,12 @@ public class User {
 		this.photoRoute = photoRoute;
 	}
 
-	public User(String id, String password) {
+	public User(String id, String password, String type) {
 		super();
 		this.id = id;
 		this.password = password;
+		this.type = type;
+		//this.photoRoute = "";
 	}
 
 	public String getId() {

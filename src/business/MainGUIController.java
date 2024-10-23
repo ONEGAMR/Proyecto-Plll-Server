@@ -21,6 +21,7 @@ public class MainGUIController extends Application {
 	@FXML private Button btVerSaldo;
 	@FXML private Button btAgregarEstudiante;
 	@FXML private Button btVerEstudiante;
+	@FXML private Button btShowOrders;
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -61,5 +62,11 @@ public class MainGUIController extends Application {
 	@FXML
 	public void verEstudiante(ActionEvent event) {
 		Logic.closeCurrentWindowAndOpen("/presentation/ViewStudentGUI.fxml", ((Stage) lbTitle.getScene().getWindow()));
+	}
+
+	@FXML
+	public void showOrder(ActionEvent event) {
+
+		Logic.closeCurrentWindowAndOpen("/presentation/ConfirmOrder.fxml", ((Stage) btShowOrders.getScene().getWindow()));
 	}
 }

@@ -55,6 +55,18 @@ public class StudentData {
         return false;
     }
 
+    public static boolean updateMoney(String updatedStudent, Double money) {
+        ArrayList<Student> list = (ArrayList<Student>) StudentData.getStudentList();
+        for (Student s : list) {
+            if (s.getCarnet().equals(updatedStudent)) {
+                s.setDineroDisponible(money);
+                StudentData.updateJson(list);
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Elimina el estudiante actualmente seleccionado de la lista y actualiza el archivo JSON
     public static void delete() {
         if (Logic.getCurrentStudent() != null) {

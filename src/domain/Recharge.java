@@ -38,4 +38,9 @@ public class Recharge {
 	public double getMonto() {
 		return monto;
 	}
+
+	public String toStringRecharge() {
+
+		return monto + "," + date;
+	}
 }

@@ -1,5 +1,7 @@
 package data;
 
+import com.mysql.cj.x.protobuf.MysqlxCrud;
+import domain.Orders;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 
@@ -22,6 +24,7 @@ public class Logic {
 	private static final String[] DAYS = {"monday", "tuesday", "wednesday", "thursday", "friday"};
 	private static final String[] MEALS = {"breakfast", "lunch"};
 	private static final String FILE_NAME = "./src/files/student_recharges.json";
+	public static Orders order;
 
 	public static final JSONUtils<Meal> MealsJsonUtils = new JSONUtils<>();
 	public static final JSONUtils<Recharge> RechargesJsonUtils = new JSONUtils<>(FILE_NAME);

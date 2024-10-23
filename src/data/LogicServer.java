@@ -1,12 +1,16 @@
 package data;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import domain.Meal;
+import domain.Recharge;
 import domain.Student;
 import domain.User;
+import javafx.collections.FXCollections;
 
 public class LogicServer {
 
@@ -19,14 +23,15 @@ public class LogicServer {
     }
 
 	//Envia los datps mediante un string anidado dependiendo del resultado
-	public static void message(ClientHandler clientHandler,int validationResult, String carnet, String password){
+	public static void message(ClientHandler clientHandler,int validationResult, String carnet, String password, String type){
 
 		if(validationResult != -10) {
+
 			clientHandler.sendMessage("user," + validationResult);
 		}else{
-			clientHandler.sendMessage("user," + validationResult + "," +StudentData.searchStudent(carnet).toStringUserData()+","+password);
-			System.out.println(StudentData.searchStudent(carnet).toStringUserData());
-
+			clientHandler.sendMessage("user," + validationResult + "," +StudentData.searchStudent(carnet).toStringUserData()+","+password+","+type+ ","+
+					LogicBD.getUserValidate(carnet).getPhotoRoute());
+			System.out.println(StudentData.searchStudent(carnet).toStringUserData() + " message datos en LOgicServer");
 		}
 	}
 
@@ -67,6 +72,92 @@ public class LogicServer {
 		};
 
 		return false;
+	}
+
+	public static List<Recharge> getListRecharges(String idStudent) {
+		String[] routeParts = idStudent.split(",");
+		List<Recharge> recharges = new ArrayList<>();
+
+		try {
+			List<Recharge> temp = Logic.RechargesJsonUtils.getElements(Recharge.class);
+
+			for(Recharge r : temp){
+
+				if(r.getCarnet().equals(routeParts[1])){
+					recharges.add(r);
+				}
+			}
+
+		} catch (IOException e) {
+			System.out.println("Error al cargar los datos." + e.getMessage());
+		}
+
+		return recharges;
+	}
+
+	public static List<Meal> getListMeals(String route){
+		String[] routeParts = route.split(",");
+		String filePath = Logic.getFilePath(routeParts[1], routeParts[2]);
+		List<Meal> meals = new ArrayList<>();
+
+		if (filePath != null) {
+			Logic.MealsJsonUtils.setFilePath(filePath);
+			try {
+				meals = Logic.MealsJsonUtils.getElements(Meal.class);
+
+			} catch (IOException e) {
+				System.out.println("Error al cargar los datos." + e.getMessage());
+			}
+		}else{
+
+			System.out.println("No se pudo encontrar el archivo.");
+		}
+		return meals;
+	}
+
+
+
+	public static List<Meal> getListMealsOrderClient(String listOrderClient){
+		String[] routeParts = listOrderClient.split(",");
+		List<Meal> meals = new ArrayList<>();
+
+		if(routeParts[2].equals("Todos")){
+			System.out.println(routeParts[2]);
+
+			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Todos");
+		}
+
+		if(routeParts[2].equals("Pendiente")){
+			System.out.println(routeParts[2]);
+
+			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Pendiente");
+		}
+
+		if(routeParts[2].equals("Preparando")){
+			System.out.println(routeParts[2]);
+
+			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Preparando");
+		}
+
+		if(routeParts[2].equals("Listo")){
+			System.out.println(routeParts[2]);
+
+			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Listo");
+		}
+
+		if(routeParts[2].equals("Entregado")){
+			System.out.println(routeParts[2]);
+
+			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Entregado");
+		}
+
+		return meals;
+	}
+
+	public static void saveOrder(String order){
+
+		LogicBD.saveOrder(order);
+		StudentData.updateMoney(order.split(",")[4],Double.parseDouble(order.split(",")[5]));
 	}
 
 }

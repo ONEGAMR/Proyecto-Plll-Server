@@ -7,8 +7,9 @@ module Proyecto1 {
 	requires com.fasterxml.jackson.datatype.jsr310;
 	requires javafx.base;
 	requires java.sql;
-	
-	exports domain;
+    requires mysql.connector.java;
+
+    exports domain;
 	
 	opens business to javafx.graphics, javafx.fxml;
 }
