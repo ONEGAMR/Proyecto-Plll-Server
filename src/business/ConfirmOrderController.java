@@ -50,6 +50,9 @@ public class ConfirmOrderController {
     private Button btAll;
 
     @FXML
+    private Button btDelete;
+
+    @FXML
     private ComboBox<String> cmStatus;
 
     private Orders selectedOrder;
@@ -57,6 +60,22 @@ public class ConfirmOrderController {
     void handleReturnAction(ActionEvent event) {
         Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
     }
+    @FXML
+    void deleteOrder(ActionEvent event) {
+
+        if(selectedOrder != null){
+
+            LogicBD.deleteOrder(selectedOrder);
+            fillTable("Pendiente");
+
+        }else{
+
+            System.out.println("Elija una orden a eliminar");
+
+        }
+
+    }
+
     @FXML
     void allORders(ActionEvent event) {
 
@@ -143,7 +162,7 @@ public class ConfirmOrderController {
     public void initialize() {
         cmStatus.getItems().addAll("Pendiente", "Preparando", "Listo", "Entregado");
         columTable();
-        fillTable("Todos");
+        fillTable("Pendiente");
         getSelectedOrder();
         getSelectedStatus();
     }

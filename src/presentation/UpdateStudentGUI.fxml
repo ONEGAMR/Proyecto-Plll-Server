@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="500.0" styleClass="anchorPane" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.UpdateStudentGUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="500.0" styleClass="anchorPane" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.UpdateStudentGUIController">
 	<children>
 		<VBox spacing="10" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" AnchorPane.topAnchor="25.0">
 			<Label styleClass="label-Title" text="Editar informacion estudiante" />
@@ -44,6 +44,8 @@
 			<VBox spacing="5">
 				<Label styleClass="label-Subjet-Title" text="* Dinero Disponible (5000 - 15000)" />
 				<TextField fx:id="tfAvailableMoney" promptText="Ingrese cantidad" styleClass="textField-normal" />
+            <Label styleClass="label-Subjet-Title" text="* Contraseña" />
+            <TextField fx:id="tfPassword" promptText="Ingrese cantidad" styleClass="textField-normal" />
 			</VBox>
 			<Label fx:id="lbErrorMessage" text=" " />
 

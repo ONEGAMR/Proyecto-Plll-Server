@@ -1,5 +1,6 @@
 package business;
 
+import data.LogicBD;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -61,10 +62,12 @@ public class ViewStudentGUIController {
         if (selectedStudent != null) {
             if (Utils.showConfirmationAlert("¿Estás seguro de que deseas eliminar este estudiante?", "Confirmar Eliminación")) {
                 StudentData.delete();
+                LogicBD.deleteUser(selectedStudent.getCarnet());
                 tvStudents.getItems().remove(selectedStudent);
                 tvStudents.refresh();
                 selectedStudent = null;
                 lbEmptyTable.setVisible(tvStudents.getItems().isEmpty());
+
             }
         }
     }

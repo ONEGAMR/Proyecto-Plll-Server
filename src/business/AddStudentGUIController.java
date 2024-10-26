@@ -3,9 +3,11 @@ package business;
 import java.time.LocalDate;
 
 import data.Logic;
+import data.LogicBD;
 import data.StudentData;
 import data.Utils;
 import domain.Student;
+import domain.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -18,6 +20,7 @@ public class AddStudentGUIController {
 	@FXML private TextField tfName;
 	@FXML private TextField tfEmail;
 	@FXML private TextField tfPhone;
+	@FXML private TextField tfPasword;
 	@FXML private DatePicker dpEnrollmentDate;
 	@FXML private RadioButton rbMale;
 	@FXML private ToggleGroup genderGroup;
@@ -26,12 +29,14 @@ public class AddStudentGUIController {
 	@FXML private Label lbErrorMessage;
 	@FXML private Button btReturn;
 	@FXML private Button btSave;
+	@FXML private ComboBox<String> cmType;
 	
     // Método de inicialización llamado por el sistema FXML
     @FXML
     private void initialize() {
         // Configura el formato del DatePicker
         Logic.configureDatePicker(dpEnrollmentDate);
+		cmType.getItems().addAll("estudiante", "personal");
     }
 
 	// Maneja la acción del botón de volver
@@ -85,6 +90,8 @@ public class AddStudentGUIController {
 	    if (Utils.showConfirmationAlert("¿Está seguro de que desea guardar?", "Confirmación")) {
 	        boolean success = StudentData.saveStudent(student);
 	        if (success) {
+
+				LogicBD.saveUser(new User(tfStudentID.getText(), tfPasword.getText(), cmType.getValue(), "Sin foto"));
 	            Utils.notifyAction(lbErrorMessage, "Estudiante registrado exitosamente", Color.GREEN);
 	            clearForm();
 	        } else {
@@ -103,6 +110,8 @@ public class AddStudentGUIController {
 		if (tfPhone.getText().trim().isEmpty()) return "El número de teléfono no puede estar vacío";
 		if (tfAvailableBalance.getText().trim().isEmpty()) return "El saldo disponible no puede estar vacío";
 		if (dpEnrollmentDate.getValue() == null) return "La fecha de inscripción no puede estar vacía";
+		if (tfPasword.getText().trim().isEmpty()) return "La contraseña no puede estar vacía";
+		if (cmType.getValue() == null) return "Seleccione el tipo de usuario";
 
 		if (!rbMale.isSelected() && !rbFemale.isSelected()) {
 			return "Debe seleccionar el género";

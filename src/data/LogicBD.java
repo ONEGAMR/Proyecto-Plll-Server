@@ -82,6 +82,69 @@ public static boolean updateUserBD(String user){
         }
     }
 
+    public static void saveUser(User user){
+
+        try {
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement stmt = cn.prepareCall("{call spSaveInStaffClients(?, ?, ?, ?)}");
+            stmt.setString(1, user.getId());  // id_person
+            stmt.setString(2, user.getPassword());  // password
+            stmt.setString(3, user.getType());  // type
+            stmt.setString(4, "Sin foto"); //photoRoute
+
+            // Falta ejecutar la consulta
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
+        }
+    }
+
+    public static void deleteUser(String id_person){
+
+        try {
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement stmt = cn.prepareCall("{call spDeleteInStaffClients(?)}");
+            stmt.setString(1, id_person);  // nameP
+
+            // Ejecutar la consulta
+            int result = stmt.executeUpdate();
+
+            if (result > 0) {
+                System.out.println("User eliminado correctamente.");
+            } else {
+                System.out.println("No se encontró el pedido para eliminar.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("LogicBD.deleteOrder: " + e.getMessage());
+        }
+    }
+    public static void deleteOrder(Orders order){
+
+        try {
+            // Preparar la llamada al procedimiento almacenado
+            CallableStatement stmt = cn.prepareCall("{call spDeleteOrder(?, ?, ?, ?)}");
+            stmt.setString(1, order.getName());  // nameP
+            stmt.setInt(2, order.getCantidad());  // cantidad
+            stmt.setString(3, order.getStatus());  // status
+            stmt.setString(4, order.getIdStudent()); //carnet
+
+
+            // Ejecutar la consulta
+            int result = stmt.executeUpdate();
+
+            if (result > 0) {
+                System.out.println("Pedido eliminado correctamente.");
+            } else {
+                System.out.println("No se encontró el pedido para eliminar.");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("LogicBD.deleteOrder: " + e.getMessage());
+        }
+    }
+
     public static ArrayList<?> getListOrderClient(String studentId, String status) {
         ArrayList<Meal> listOrder = new ArrayList<>();
         CallableStatement stmt = null;
