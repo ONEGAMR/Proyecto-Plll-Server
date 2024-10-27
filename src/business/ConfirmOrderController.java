@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
 import java.util.List;
 
 public class ConfirmOrderController {
@@ -66,7 +65,11 @@ public class ConfirmOrderController {
         if(selectedOrder != null){
 
             LogicBD.deleteOrder(selectedOrder);
-            fillTable("Pendiente");
+            if(cmStatus != null){
+                fillTable(cmStatus.getValue());
+            }else {
+                fillTable("Pendiente");
+            }
 
         }else{
 
@@ -79,7 +82,7 @@ public class ConfirmOrderController {
     @FXML
     void allORders(ActionEvent event) {
 
-        fillTable("Todos");
+        fillTable("Pendiente");
     }
 
     @FXML
@@ -107,6 +110,7 @@ public class ConfirmOrderController {
     }
 
     public void fillTable(String list) {
+        tvOrdes.getItems().clear();
         List<Orders> ordersList;
 
         if(list.equals("Todos")){
@@ -114,6 +118,8 @@ public class ConfirmOrderController {
             ordersList = LogicBD.getListOrders();
         }else {
 
+
+            System.out.println(list+ "  estado pasa");
             ordersList = LogicBD.getListOrdersStatus(list);
         }
 
@@ -160,7 +166,7 @@ public class ConfirmOrderController {
 
     @FXML
     public void initialize() {
-        cmStatus.getItems().addAll("Pendiente", "Preparando", "Listo", "Entregado");
+        cmStatus.getItems().addAll("Todos", "Preparando", "Listo", "Entregado");
         columTable();
         fillTable("Pendiente");
         getSelectedOrder();

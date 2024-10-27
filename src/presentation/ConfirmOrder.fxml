@@ -55,7 +55,7 @@
 
 						<HBox alignment="CENTER_RIGHT" prefHeight="30.0" spacing="10">
 							<children>
-                        <Button fx:id="btAll" mnemonicParsing="false" onAction="#allORders" text="Pedidos" />
+                        <Button fx:id="btAll" mnemonicParsing="false" onAction="#allORders" text="Pendientes" />
 								<Button fx:id="btAddBalance" onAction="#handleAddBalanceAction" styleClass="button-green-long" text="cambiar estado" />
                         <Button fx:id="btDelete" mnemonicParsing="false" onAction="#deleteOrder" text="Eliminar" />
 							</children>

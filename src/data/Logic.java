@@ -25,10 +25,11 @@ public class Logic {
 	private static final String[] MEALS = {"breakfast", "lunch"};
 	private static final String FILE_NAME = "./src/files/student_recharges.json";
 	public static Orders order;
-
+	public static Meal meal;
 	public static final JSONUtils<Meal> MealsJsonUtils = new JSONUtils<>();
 	public static final JSONUtils<Recharge> RechargesJsonUtils = new JSONUtils<>(FILE_NAME);
 	public static Student currentStudent = new Student();
+	public static String filePath;
 
 	// Getter para obtener el estudiante actualmente seleccionado
 	public static Student getCurrentStudent() {

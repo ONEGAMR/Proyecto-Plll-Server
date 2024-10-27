@@ -9,6 +9,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import domain.Meal;
+import domain.Student;
 
 public class JSONUtils<T> {
 
@@ -55,4 +57,33 @@ public class JSONUtils<T> {
             e.printStackTrace();
         }
     }
+
+    public void updateMeal(Meal meal, String mealUpdate) throws IOException {
+        List<Meal> temp = (List<Meal>) getElements((Class<T>) Meal.class);
+
+        for (int i = 0; i < temp.size(); i++) {
+            Meal m = temp.get(i);
+            // Reemplaza el objeto en la lista
+            if (m.getName().equals(mealUpdate)) {
+                temp.set(i, meal);
+                break;
+            }
+        }
+        updateJson((List<T>) temp);
+    }
+
+    public void deleteMeal(String mealDelete) throws IOException {
+        List<Meal> temp = (List<Meal>) getElements((Class<T>) Meal.class);
+
+        for (int i = 0; i < temp.size(); i++) {
+            Meal m = temp.get(i);
+            // Reemplaza el objeto en la lista
+            if (m.getName().equals(mealDelete)) {
+                temp.remove(i);
+                break;
+            }
+        }
+        updateJson((List<T>) temp);
+    }
+
 }

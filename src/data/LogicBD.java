@@ -62,6 +62,30 @@ public static boolean updateUserBD(String user){
 
     return isUpdated;
 }
+    public static boolean updateUserBDUs(User user){
+        boolean isUpdated = false;
+
+            try {
+                // Preparar la llamada al procedimiento almacenado
+                CallableStatement stmt = cn.prepareCall("{call spUpdateInStaffClients(?, ?, ?, ?)}");
+                stmt.setString(1, user.getId());  // ID
+                stmt.setString(2, user.getPassword());  // Pasword
+                stmt.setString(3, user.getType());  // type 10
+                stmt.setString(4, user.getPhotoRoute());  // routePhoto 11
+
+                // Ejecutar la consulta de actualización
+                int rowsAffected = stmt.executeUpdate();
+
+                // Verificar si se actualizó alguna fila
+                if (rowsAffected > 0) {
+                    isUpdated = true;  // Indicar que la actualización fue exitosa
+                }
+            } catch (SQLException e) {
+                System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
+            }
+
+        return isUpdated;
+    }
 
     public static void saveOrder(String order){
         String[] foodOrders = order.split(",");
@@ -81,6 +105,7 @@ public static boolean updateUserBD(String user){
             System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
         }
     }
+
 
     public static void saveUser(User user){
 

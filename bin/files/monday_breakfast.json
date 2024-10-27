@@ -1,1 +1,1 @@
-[{"name":"Gallo Pinto con huevo","price":1500},{"name":"Tortilla con queso","price":800},{"name":"Pollo asado","price":2500}]
+[{"name":"Tortilla con queso","status":null,"price":800,"cantidad":0,"totalOrder":0},{"name":"Pollo asado","status":null,"price":2500,"cantidad":0,"totalOrder":0}]

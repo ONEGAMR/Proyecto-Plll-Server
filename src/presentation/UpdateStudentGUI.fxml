@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,7 +47,9 @@
 				<TextField fx:id="tfAvailableMoney" promptText="Ingrese cantidad" styleClass="textField-normal" />
             <Label styleClass="label-Subjet-Title" text="* Contraseña" />
             <TextField fx:id="tfPassword" promptText="Ingrese cantidad" styleClass="textField-normal" />
+            <Label styleClass="label-Subjet-Title" text="* Tipo de usuario" />
 			</VBox>
+         <ComboBox fx:id="cmType" prefHeight="25.0" prefWidth="441.0" />
 			<Label fx:id="lbErrorMessage" text=" " />
 
 			<HBox alignment="CENTER" prefHeight="30.0">

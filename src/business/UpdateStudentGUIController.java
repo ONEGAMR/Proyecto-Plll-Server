@@ -1,10 +1,9 @@
 package business;
 
+import data.LogicBD;
+import domain.User;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import data.Logic;
@@ -19,13 +18,16 @@ public class UpdateStudentGUIController {
     @FXML private TextField tfName;
     @FXML private TextField tfEmail;
     @FXML private TextField tfPhone;
+    @FXML private TextField tfPassword;
     @FXML private CheckBox cbIsActive;
     @FXML private TextField tfAvailableMoney;
     @FXML private Label lbErrorMessage;
     @FXML private Button btReturn;
     @FXML private Button btEdit;
+    @FXML private ComboBox<String> cmType;
 
     private Student student = Logic.getCurrentStudent();
+    private User us = LogicBD.getUserValidate(student.getCarnet());
 
     @FXML
     public void handleReturnAction(ActionEvent event) {
@@ -58,11 +60,15 @@ public class UpdateStudentGUIController {
         student.setTelefono(phone);
         student.setEstaActivo(cbIsActive.isSelected());
         student.setDineroDisponible(availableMoney);
+        us.setPassword(tfPassword.getText());
+        us.setType(cmType.getValue());
 
         // Confirma la acción antes de guardar
         if (Utils.showConfirmationAlert("¿Estás seguro de que deseas guardar los cambios?", "Confirmación")) {
             boolean success = StudentData.updateStudent(student);
             if (success) {
+
+                LogicBD.updateUserBDUs(us);
             	Utils.notifyAction(lbErrorMessage, "Estudiante actualizado con éxito", Color.GREEN);
                 Logic.closeCurrentWindowAndOpen("/presentation/ViewStudentGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
             } else {
@@ -79,6 +85,8 @@ public class UpdateStudentGUIController {
         if (tfPhone.getText().trim().isEmpty()) return "El número de teléfono no puede estar vacío";
         if (tfAvailableMoney.getText().trim().isEmpty()) return "La cantidad de dinero disponible no puede estar vacía";
         if (!tfPhone.getText().matches("\\d{8,10}")) return "El número de teléfono debe tener entre 8 y 10 dígitos";
+        if (tfPassword.getText().trim().isEmpty()) return "La contraseña no puede estar vacía";
+        if (cmType.getValue() == null) return "Seleccione el tipo de usuario";
 
         try {
             double money = Double.parseDouble(tfAvailableMoney.getText());
@@ -94,6 +102,8 @@ public class UpdateStudentGUIController {
 
     @FXML
     private void initialize() {
+        cmType.getItems().addAll("estudiante", "personal");
+
         if (student != null) {
             tfStudentID.setText(student.getCarnet());
             tfName.setText(student.getNombre());
@@ -101,6 +111,8 @@ public class UpdateStudentGUIController {
             tfPhone.setText(String.valueOf(student.getTelefono()));
             cbIsActive.setSelected(student.isEstaActivo());
             tfAvailableMoney.setText(String.valueOf(student.getDineroDisponible()));
+            tfPassword.setText(us.getPassword());
+            cmType.getSelectionModel().select(us.getType());
         } else {
             lbErrorMessage.setText("No hay datos de estudiante disponibles.");
         }

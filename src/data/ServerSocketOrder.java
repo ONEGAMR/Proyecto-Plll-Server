@@ -42,7 +42,8 @@ public class ServerSocketOrder {
 
 	//enviar un mensaje a un cliente en especifico
 	public static void sendMessageToClient(String clientId, String message) {
-		ClientHandler client = clientes.get(clientId);
+		ClientHandler client = clientes.get(Integer.parseInt(clientId));
+
 		if (client != null) {
 			client.sendMessage(message);
 			System.out.println("Mensaje enviado al cliente con ID: " + clientId);

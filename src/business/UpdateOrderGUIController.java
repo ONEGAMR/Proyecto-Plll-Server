@@ -2,6 +2,7 @@ package business;
 
 import data.Logic;
 import data.LogicBD;
+import data.ServerSocketOrder;
 import domain.Orders;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -57,7 +58,7 @@ public class UpdateOrderGUIController {
     @FXML
     private void handleReturn() {
         // Cierra la ventana actual
-        Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
+        Logic.closeCurrentWindowAndOpen("/presentation/ConfirmOrder.fxml", ((Stage) btReturn.getScene().getWindow()));
     }
 
     @FXML
@@ -71,6 +72,10 @@ public class UpdateOrderGUIController {
             Logic.order.setStatus(selectedStatus);
 
             if(LogicBD.updateOrderBD(Logic.order)) {
+
+                ServerSocketOrder.sendMessageToClient(Logic.order.getIdStudent(), "notifyStatus, tu peido "+ Logic.order.getName() +
+                        "se encuentra en: "+ selectedStatus);
+
                 lbErrorMessage.setText("Estado guardado exitosamente.");
                 Logic.closeCurrentWindowAndOpen("/presentation/ConfirmOrder.fxml", ((Stage) btReturn.getScene().getWindow()));
             }else{

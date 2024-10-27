@@ -13,7 +13,7 @@ import data.ServerSocketOrder;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 
-public class MainGUIController extends Application {
+public class MainGUIController {
 	@FXML private Label lbProyect;
 	@FXML private Label lbTitle;
 	@FXML private Label lbSubtitle;
@@ -22,26 +22,10 @@ public class MainGUIController extends Application {
 	@FXML private Button btAgregarEstudiante;
 	@FXML private Button btVerEstudiante;
 	@FXML private Button btShowOrders;
-	
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/presentation/MainGUI.fxml"));
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void main(String[] args) {
-		launch(args);
-	}
 
 	@FXML
 	private void initialize() {
-		ServerSocketOrder.runServer();
+
 	}
 	// Event Listener on Button[#btSolicitarServicio].onAction
 	@FXML

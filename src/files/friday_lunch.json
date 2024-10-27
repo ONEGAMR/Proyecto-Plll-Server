@@ -6,5 +6,10 @@
   {
     "name": "Casado de pollo",
     "price": 2400
+  },
+
+  {
+    "name": "Panqueques de yuca",
+    "price": 1000
   }
 ]

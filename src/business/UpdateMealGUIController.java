@@ -1,23 +1,17 @@
 package business;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.collections.FXCollections;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-
 import data.Logic;
 import data.Utils;
 import domain.Meal;
+import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
-public class ServiceRequestGUIController {
+public class UpdateMealGUIController {
 
     @FXML private Label lbTitle;
     @FXML private Label lbMealTime;
@@ -38,13 +32,23 @@ public class ServiceRequestGUIController {
     // Inicializa el ComboBox con los días de la semana en español
     @FXML
     public void initialize() {
-        cbServiceDay.setItems(FXCollections.observableArrayList(
-            "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"
-        ));
+
+        fillForm();
     }
+
+    public void fillForm(){
+
+        if(Logic.meal != null){
+
+            tfName.setText(Logic.meal.getName());
+            tfPrice.setText(String.valueOf(Logic.meal.getPrice()));
+        }
+    }
+
     // Maneja la acción del botón de volver
     @FXML
     public void handleReturn(ActionEvent event) {
+        Logic.meal = null;
         Logic.closeCurrentWindowAndOpen("/presentation/ServiceViewGUI.fxml", (Stage) btReturn.getScene().getWindow());
     }
 
@@ -58,11 +62,8 @@ public class ServiceRequestGUIController {
             return; // Sale del método si la validación falla
         }
 
-        String day = cbServiceDay.getValue();
-        String type = rbBreakfast.isSelected() ? "breakfast" : rbLunch.isSelected() ? "lunch" : "";
-
-        String confirmationTitle = "¿Está seguro de agregar un nuevo servicio?";
-        String confirmationContent = "Día: " + day + "\nHorario: " + (type.equals("breakfast") ? "Desayuno" : "Almuerzo");
+        String confirmationTitle = "¿Está seguro de editar el servicio?";
+        String confirmationContent = Logic.meal.toStringMealData();
 
         boolean isConfirmed = Utils.showConfirmationAlert(
             confirmationTitle,
@@ -75,12 +76,14 @@ public class ServiceRequestGUIController {
                 int price = Integer.parseInt(tfPrice.getText().trim());
                 Meal meal = new Meal(name, price);
 
-                filePath = Logic.getFilePath(day, type);
-                Logic.MealsJsonUtils.setFilePath(filePath);
-                Logic.MealsJsonUtils.saveElement(meal);
+                System.out.println("Desde updateMEal "+ meal.toStringMealData());
+                Logic.MealsJsonUtils.setFilePath(Logic.filePath);
+                //se actualiza
+                Logic.MealsJsonUtils.updateMeal(meal, Logic.meal.getName());
 
                 Utils.showAlert(AlertType.INFORMATION, "Registro Exitoso", "Nombre: " + name + "\nPrecio: ₡" + price);
                 Utils.notifyAction(lbErrorMessage, "Comida guardada con éxito", Color.GREEN);
+                Logic.meal = null;
             } catch (NumberFormatException e) {
             	Utils.notifyAction(lbErrorMessage, "Error al procesar el precio", Color.RED);
             } catch (Exception e) {
@@ -91,13 +94,6 @@ public class ServiceRequestGUIController {
 
     // Valida el formulario
     private String validateForm() {
-        if (cbServiceDay.getValue() == null || cbServiceDay.getValue().isEmpty()) {
-            return "Debes seleccionar un día";
-        }
-
-        if (!rbBreakfast.isSelected() && !rbLunch.isSelected()) {
-            return "Debes seleccionar un tipo de comida (desayuno o almuerzo)";
-        }
 
         if (tfName.getText().trim().isEmpty()) {
             return "El nombre no puede estar vacío";

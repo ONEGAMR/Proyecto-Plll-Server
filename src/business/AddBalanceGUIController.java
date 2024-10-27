@@ -1,5 +1,6 @@
 package business;
 
+import data.ServerSocketOrder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -90,6 +91,8 @@ public class AddBalanceGUIController {
             try {
                 Logic.RechargesJsonUtils.saveElement(recharge);
                 updateStudentBalance(student, newBalance);
+                //se envia al cliente el nuevo balance
+                ServerSocketOrder.sendMessageToClient(student.getCarnet(), "newBalance,"+newBalance);
                 clearFields();
                 Utils.notifyAction(lbErrorMessage, "Saldo recargado exitosamente.", Color.GREEN);
                 Logic.closeCurrentWindowAndOpen("/presentation/BalanceInquiryGUI.fxml", (Stage) btBack.getScene().getWindow());
