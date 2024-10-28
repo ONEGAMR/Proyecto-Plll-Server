@@ -73,8 +73,8 @@ public class UpdateOrderGUIController {
 
             if(LogicBD.updateOrderBD(Logic.order)) {
 
-                ServerSocketOrder.sendMessageToClient(Logic.order.getIdStudent(), "notifyStatus, tu peido "+ Logic.order.getName() +
-                        "se encuentra en: "+ selectedStatus);
+                ServerSocketOrder.sendMessageToClient(Logic.order.getIdStudent(), "notifyStatus,Tu pedido "+ Logic.order.getName() +
+                        " se encuentra: "+ selectedStatus);
 
                 lbErrorMessage.setText("Estado guardado exitosamente.");
                 Logic.closeCurrentWindowAndOpen("/presentation/ConfirmOrder.fxml", ((Stage) btReturn.getScene().getWindow()));

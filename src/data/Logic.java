@@ -3,6 +3,7 @@ package data;
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 import domain.Orders;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class Logic {
 	public static final JSONUtils<Recharge> RechargesJsonUtils = new JSONUtils<>(FILE_NAME);
 	public static Student currentStudent = new Student();
 	public static String filePath;
+	public static String status;
 
 	// Getter para obtener el estudiante actualmente seleccionado
 	public static Student getCurrentStudent() {
@@ -130,4 +132,14 @@ public class Logic {
         }
         return null;
     }
+
+	/// Método que guarda el filtro de confirmación
+	public static boolean fillList(ComboBox<String> select) {
+		if (status != null && select.getItems().contains(status)) {
+			select.getSelectionModel().select(status);
+			return true;
+		}
+		return false;
+	}
+
 }

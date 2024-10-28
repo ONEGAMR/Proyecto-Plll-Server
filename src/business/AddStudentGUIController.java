@@ -105,6 +105,8 @@ public class AddStudentGUIController {
 
 	// Valida el formulario antes de guardar el estudiante
 	private String validateForm() {
+		if(tfStudentID.getText().length() > 10) return "El ID no puede ser mayor a 10 caracteres";
+		if (tfPasword.getText().length() > 45) return "La contraseña no puede ser mayor a 45 caracteres";
 		if (tfStudentID.getText().trim().isEmpty()) return "El ID de estudiante no puede estar vacío";
 		if (tfName.getText().trim().isEmpty()) return "El nombre no puede estar vacío";
 		if (tfPhone.getText().trim().isEmpty()) return "El número de teléfono no puede estar vacío";

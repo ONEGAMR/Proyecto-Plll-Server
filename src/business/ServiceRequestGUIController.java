@@ -101,6 +101,8 @@ public class ServiceRequestGUIController {
 
         if (tfName.getText().trim().isEmpty()) {
             return "El nombre no puede estar vacío";
+        }else if(tfName.getText().length() > 25){
+            return  "El nombre es muy largo (Max 25 caracteres)";
         }
 
         String priceText = tfPrice.getText().trim();

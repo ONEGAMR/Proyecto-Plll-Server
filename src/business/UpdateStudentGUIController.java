@@ -81,6 +81,7 @@ public class UpdateStudentGUIController {
 
     // Valida los campos del formulario
     private String validateForm() {
+        if (tfPassword.getText().length() > 10) return "La contraseña no puede ser mayor a 45 caracteres";
         if (tfStudentID.getText().trim().isEmpty()) return "El ID no puede estar vacío";
         if (tfPhone.getText().trim().isEmpty()) return "El número de teléfono no puede estar vacío";
         if (tfAvailableMoney.getText().trim().isEmpty()) return "La cantidad de dinero disponible no puede estar vacía";

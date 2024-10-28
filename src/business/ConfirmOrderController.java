@@ -57,6 +57,7 @@ public class ConfirmOrderController {
     private Orders selectedOrder;
     @FXML
     void handleReturnAction(ActionEvent event) {
+        Logic.status = null;
         Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
     }
     @FXML
@@ -91,6 +92,7 @@ public class ConfirmOrderController {
 
             Logic.order = selectedOrder;
 
+            Logic.status = cmStatus.getValue();
             Logic.closeCurrentWindowAndOpen("/presentation/UpdateOrderGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
 
         }else{
@@ -171,5 +173,9 @@ public class ConfirmOrderController {
         fillTable("Pendiente");
         getSelectedOrder();
         getSelectedStatus();
+
+        if(Logic.fillList(cmStatus)){
+            fillTable(Logic.status);
+        }
     }
 }
