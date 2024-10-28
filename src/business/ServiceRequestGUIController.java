@@ -45,7 +45,7 @@ public class ServiceRequestGUIController {
     // Maneja la acción del botón de volver
     @FXML
     public void handleReturn(ActionEvent event) {
-        Logic.closeCurrentWindowAndOpen("/presentation/ServiceViewGUI.fxml", (Stage) btReturn.getScene().getWindow());
+        Logic.closeCurrentWindowAndOpen("/presentation/MealGestor.fxml", (Stage) btReturn.getScene().getWindow());
     }
 
     // Maneja la acción del botón de guardar

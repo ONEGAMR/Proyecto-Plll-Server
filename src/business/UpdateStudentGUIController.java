@@ -31,7 +31,7 @@ public class UpdateStudentGUIController {
 
     @FXML
     public void handleReturnAction(ActionEvent event) {
-        Logic.closeCurrentWindowAndOpen("/presentation/ViewStudentGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
+        Logic.closeCurrentWindowAndOpen("/presentation/ViewStudent.fxml", ((Stage) btReturn.getScene().getWindow()));
     }
 
     @FXML
@@ -70,7 +70,7 @@ public class UpdateStudentGUIController {
 
                 LogicBD.updateUserBDUs(us);
             	Utils.notifyAction(lbErrorMessage, "Estudiante actualizado con éxito", Color.GREEN);
-                Logic.closeCurrentWindowAndOpen("/presentation/ViewStudentGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
+                Logic.closeCurrentWindowAndOpen("/presentation/ViewStudent.fxml", ((Stage) btReturn.getScene().getWindow()));
             } else {
             	Utils.notifyAction(lbErrorMessage, "Error al actualizar el estudiante", Color.RED);
             }

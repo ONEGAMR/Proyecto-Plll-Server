@@ -117,6 +117,6 @@ public class BalanceInquiryGUIController {
     // Maneja la acción del botón de agregar saldo
     @FXML
     public void handleAddBalanceAction() {
-        Logic.closeCurrentWindowAndOpen("/presentation/AddBalanceGUI.fxml", (Stage) btAddBalance.getScene().getWindow());
+        Logic.closeCurrentWindowAndOpen("/presentation/AddBalance.fxml", (Stage) btAddBalance.getScene().getWindow());
     }
 }

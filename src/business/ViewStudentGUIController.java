@@ -53,7 +53,7 @@ public class ViewStudentGUIController {
     public void handleEditAction(ActionEvent event) {
         if (selectedStudent != null) {
             Logic.setCurrentStudent(selectedStudent);
-            Logic.closeCurrentWindowAndOpen("/presentation/UpdateStudentGUI.fxml", ((Stage) lbTitle.getScene().getWindow()));
+            Logic.closeCurrentWindowAndOpen("/presentation/UpdateStudent.fxml", ((Stage) lbTitle.getScene().getWindow()));
         }
     }
 

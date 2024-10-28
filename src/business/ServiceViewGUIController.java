@@ -2,21 +2,15 @@ package business;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 
 import data.Logic;
-import data.StudentData;
-import data.Utils;
 import domain.Meal;
-import domain.Student;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ServiceViewGUIController {
@@ -47,7 +41,7 @@ public class ServiceViewGUIController {
 
 		if(Logic.meal != null){
 			generatePath();
-			Logic.closeCurrentWindowAndOpen("/presentation/UpdateMealGUI.fxml", ((Stage) btAddMeal.getScene().getWindow()));
+			Logic.closeCurrentWindowAndOpen("/presentation/UpdateMeal.fxml", ((Stage) btAddMeal.getScene().getWindow()));
 		}else{
 			System.out.println("seleccione una meal edit");
 		}
@@ -161,7 +155,7 @@ public class ServiceViewGUIController {
 
 	@FXML
 	public void handleAddMealAction(ActionEvent event) {
-		Logic.closeCurrentWindowAndOpen("/presentation/ServiceRequestGUI.fxml", ((Stage) btAddMeal.getScene().getWindow()));
+		Logic.closeCurrentWindowAndOpen("/presentation/ServiceRequest.fxml", ((Stage) btAddMeal.getScene().getWindow()));
 	}
 
 }

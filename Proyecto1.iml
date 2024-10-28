@@ -81,5 +81,6 @@
     <orderEntry type="library" name="mysql" level="application" />
     <orderEntry type="library" name="javafx-swt" level="application" />
     <orderEntry type="library" name="mysql-connector-java-8.0.28" level="application" />
+    <orderEntry type="library" name="javafx22" level="application" />
   </component>
 </module>

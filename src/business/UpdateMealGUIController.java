@@ -3,7 +3,6 @@ package business;
 import data.Logic;
 import data.Utils;
 import domain.Meal;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.AlertType;
@@ -49,7 +48,7 @@ public class UpdateMealGUIController {
     @FXML
     public void handleReturn(ActionEvent event) {
         Logic.meal = null;
-        Logic.closeCurrentWindowAndOpen("/presentation/ServiceViewGUI.fxml", (Stage) btReturn.getScene().getWindow());
+        Logic.closeCurrentWindowAndOpen("/presentation/MealGestor.fxml", (Stage) btReturn.getScene().getWindow());
     }
 
     // Maneja la acción del botón de guardar

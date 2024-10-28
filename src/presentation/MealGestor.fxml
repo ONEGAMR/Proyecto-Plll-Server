@@ -38,7 +38,7 @@
 		<HBox alignment="CENTER_LEFT" spacing="24">
 			<VBox spacing="8">
 				<Label styleClass="label-Subjet-Title" text="Seleccione el día:" />
-				<ComboBox fx:id="cbReservationDay" prefWidth="250" promptText="Seleccione el día a reservar" styleClass="comboBox-normal" />
+				<ComboBox fx:id="cbReservationDay" prefHeight="54.0" prefWidth="294.0" promptText="Seleccione el día a reservar" styleClass="comboBox-normal" />
 			</VBox>
 
 			<VBox spacing="8">

@@ -21,6 +21,7 @@ import java.util.List;
 
 public class AddBalanceGUIController {
 
+    public Button btReturn;
     @FXML private TextField tfStudentID;
     @FXML private TextField tfAmount;
     @FXML private DatePicker dpDate;
@@ -36,12 +37,6 @@ public class AddBalanceGUIController {
     private void initialize() {
         // Configura el formato del DatePicker
         Logic.configureDatePicker(dpDate);
-    }
-
-    // Maneja la acción del botón de volver
-    @FXML
-    private void handleBackAction(ActionEvent event) {
-        Logic.closeCurrentWindowAndOpen("/presentation/BalanceInquiryGUI.fxml", (Stage) btBack.getScene().getWindow());
     }
 
     // Maneja la acción del botón de recargar saldo
@@ -95,7 +90,7 @@ public class AddBalanceGUIController {
                 ServerSocketOrder.sendMessageToClient(student.getCarnet(), "newBalance,"+newBalance);
                 clearFields();
                 Utils.notifyAction(lbErrorMessage, "Saldo recargado exitosamente.", Color.GREEN);
-                Logic.closeCurrentWindowAndOpen("/presentation/BalanceInquiryGUI.fxml", (Stage) btBack.getScene().getWindow());
+                Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) btBack.getScene().getWindow());
             } catch (IOException e) {
                 Utils.notifyAction(lbErrorMessage, "Error al guardar la recarga: " + e.getMessage(), Color.RED);
             } catch (Exception e) {
@@ -137,5 +132,9 @@ public class AddBalanceGUIController {
         tfStudentID.clear();
         tfAmount.clear();
         lbErrorMessage.setText("");
+    }
+
+    public void handleReturnAction(ActionEvent actionEvent) {
+        Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) btBack.getScene().getWindow());
     }
 }

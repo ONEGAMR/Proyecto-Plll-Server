@@ -3,7 +3,6 @@ package business;
 import data.Logic;
 import data.LogicBD;
 import data.ServerSocketOrder;
-import domain.Orders;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -58,7 +57,7 @@ public class UpdateOrderGUIController {
     @FXML
     private void handleReturn() {
         // Cierra la ventana actual
-        Logic.closeCurrentWindowAndOpen("/presentation/ConfirmOrder.fxml", ((Stage) btReturn.getScene().getWindow()));
+        Logic.closeCurrentWindowAndOpen("/presentation/OrderRegister.fxml", ((Stage) btReturn.getScene().getWindow()));
     }
 
     @FXML
@@ -77,7 +76,7 @@ public class UpdateOrderGUIController {
                         " se encuentra: "+ selectedStatus);
 
                 lbErrorMessage.setText("Estado guardado exitosamente.");
-                Logic.closeCurrentWindowAndOpen("/presentation/ConfirmOrder.fxml", ((Stage) btReturn.getScene().getWindow()));
+                Logic.closeCurrentWindowAndOpen("/presentation/OrderRegister.fxml", ((Stage) btReturn.getScene().getWindow()));
             }else{
                 lbErrorMessage.setText("Error al guardar el estado.");
             }

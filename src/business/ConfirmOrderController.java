@@ -93,7 +93,7 @@ public class ConfirmOrderController {
             Logic.order = selectedOrder;
 
             Logic.status = cmStatus.getValue();
-            Logic.closeCurrentWindowAndOpen("/presentation/UpdateOrderGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
+            Logic.closeCurrentWindowAndOpen("/presentation/UpdateOrder.fxml", ((Stage) btReturn.getScene().getWindow()));
 
         }else{
             notifyError("No hay pedidos seleccionados");
