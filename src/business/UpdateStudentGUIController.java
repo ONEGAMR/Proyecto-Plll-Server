@@ -90,8 +90,9 @@ public class UpdateStudentGUIController {
 
         try {
             double money = Double.parseDouble(tfAvailableMoney.getText());
-            if (!Logic.isValidBalance(money, 5000, 15000)) {
-                return "La cantidad de dinero disponible debe estar entre 5000 y 15000";
+            if (money < 1000) {
+
+                return "La cantidad de dinero disponible debe ser mayor o igual a 1000";
             }
         } catch (NumberFormatException e) {
             return "La cantidad de dinero disponible debe ser un número válido";

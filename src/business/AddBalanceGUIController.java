@@ -80,7 +80,7 @@ public class AddBalanceGUIController {
 
         double newBalance = student.getDineroDisponible() + amount;
 
-        if (!Logic.isValidBalance(newBalance, MIN_BALANCE, MAX_BALANCE)) {
+        if (!Logic.isValidBalance(amount, MIN_BALANCE, MAX_BALANCE)) {
             Utils.notifyAction(lbErrorMessage, "El saldo total debe estar entre " + MIN_BALANCE + " y " + MAX_BALANCE + ". Actual: " + student.getDineroDisponible(), Color.RED);
             return;
         }

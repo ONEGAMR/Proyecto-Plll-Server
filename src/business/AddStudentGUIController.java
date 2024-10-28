@@ -130,8 +130,8 @@ public class AddStudentGUIController {
 
 		try {
 			double balance = Double.parseDouble(tfAvailableBalance.getText());
-			if (!Logic.isValidBalance(balance, 5000, 15000)) {
-				return "El saldo disponible debe estar entre 5000 y 15000";
+			if (balance < 1000) {
+				return "El saldo disponible debe ser mayor o igual a 1000 ";
 			}
 		} catch (NumberFormatException e) {
 			return "El saldo disponible debe ser un número válido";
