@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="657.0" prefWidth="598.0" styleClass="root" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.AddStudentGUIController">
+	<VBox prefHeight="759.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+		<!-- Header -->
+		<VBox styleClass="header">
+			<Label styleClass="label-Title" text="Registro de Nuevo Perfil">
+				<padding>
+					<Insets top="10.0" />
+				</padding>
+				<VBox.margin>
+					<Insets left="12.0" />
+				</VBox.margin>
+			</Label>
+			<Label style="-fx-text-fill: white;" styleClass="login-subtitle" text="Complete el formulario para registrar un nuevo estudiante" textFill="WHITE">
+				<padding>
+					<Insets left="12.0" />
+				</padding>
+			</Label>
+		</VBox>
+
+		<!-- Scrollable Content -->
+		<ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
+			<VBox styleClass="profile-container">
+				<!-- Formulario -->
+				<VBox spacing="16">
+					<!-- Carnet -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Carné (Max 10 letras)" />
+						<TextField fx:id="tfStudentID" promptText="Ingrese carnét" styleClass="input-field" />
+					</VBox>
+
+					<!-- Nombre -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="Nombre" />
+						<TextField fx:id="tfName" promptText="Ingrese nombre completo" styleClass="input-field" />
+					</VBox>
+
+					<!-- Correo -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="Correo Electrónico" />
+						<TextField fx:id="tfEmail" promptText="Ingrese correo electrónico" styleClass="input-field" />
+					</VBox>
+
+					<!-- Teléfono -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Teléfono (8-10 números)" />
+						<TextField fx:id="tfPhone" promptText="Ingrese teléfono" styleClass="input-field" />
+					</VBox>
+
+					<!-- Estado Activo -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* ¿Está Activo?" />
+						<CheckBox selected="true" styleClass="custom-checkbox" text="Sí" />
+					</VBox>
+
+					<!-- Fecha de Ingreso -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Fecha de Ingreso" />
+						<DatePicker fx:id="dpEnrollmentDate" prefWidth="598.0" promptText="Seleccione fecha" styleClass="date-picker" />
+					</VBox>
+
+					<!-- Género -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="Género" />
+						<HBox spacing="20">
+							<RadioButton fx:id="rbMale" styleClass="meal-radio" text="Masculino">
+								<toggleGroup>
+									<ToggleGroup fx:id="genderGroup" />
+								</toggleGroup>
+							</RadioButton>
+							<RadioButton fx:id="rbFemale" styleClass="meal-radio" text="Femenino" toggleGroup="$genderGroup" />
+						</HBox>
+					</VBox>
+
+					<!-- Saldo Disponible -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Dinero Disponible (5000 - 15000)" />
+						<TextField fx:id="tfAvailableBalance" promptText="Ingrese cantidad" styleClass="input-field" />
+					</VBox>
+
+					<!-- Contraseña -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Contraseña" />
+						<TextField fx:id="tfPasword" promptText="Ingrese contraseña" styleClass="input-field" />
+					</VBox>
+
+					<!-- Tipo -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Tipo" />
+						<ComboBox fx:id="cmType" prefWidth="598.0" promptText="Seleccione tipo" styleClass="comboBox-normal" />
+					</VBox>
+
+					<!-- Mensaje de Error -->
+					<Label fx:id="lbErrorMessage" styleClass="error-message" wrapText="true" />
+				</VBox>
+			</VBox>
+		</ScrollPane>
+
+		<!-- Footer -->
+		<VBox styleClass="order-summary-footer">
+			<HBox spacing="8">
+				<!-- Contenedor del botón de Cancelar -->
+				<HBox alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+					<Button fx:id="btReturn" onAction="#handleReturnAction" prefWidth="150.0" styleClass="button-white" text="Cancelar" />
+				</HBox>
+
+				<!-- Contenedor del botón de Guardar -->
+				<HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+					<Button fx:id="btSave" onAction="#handleSaveAction" prefWidth="150.0" styleClass="button-red" text="Guardar" />
+				</HBox>
+			</HBox>
+		</VBox>
+	</VBox>
+</AnchorPane>
