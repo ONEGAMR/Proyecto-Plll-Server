@@ -138,7 +138,7 @@ public static boolean updateUserBD(String user){
             if (result > 0) {
                 System.out.println("User eliminado correctamente.");
             } else {
-                System.out.println("No se encontró el pedido para eliminar.");
+                System.out.println("No se encontró el perfil para eliminar.");
             }
 
         } catch (SQLException e) {
