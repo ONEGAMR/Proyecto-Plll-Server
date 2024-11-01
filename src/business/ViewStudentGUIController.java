@@ -39,7 +39,7 @@ public class ViewStudentGUIController {
 
     @FXML
     public void handleReturnAction(ActionEvent event) {
-        Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) lbTitle.getScene().getWindow()));
+        Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) tvStudents.getScene().getWindow()));
     }
 
     @FXML

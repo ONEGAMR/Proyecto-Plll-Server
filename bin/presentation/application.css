@@ -1,5 +1,5 @@
 .root {
-    -color-primary: #E83033;
+    -color-primary: #008B76;
     -color-primary-dark: derive(-color-primary, -10%);
     -color-primary-darker: derive(-color-primary, -20%);
     -color-primary-light: derive(-color-primary, 10%);
@@ -345,7 +345,7 @@
     -fx-padding: 12px 16px;
     -fx-font-size: 14px;
     -fx-prompt-text-fill: #a1a1aa;
-    -fx-border-width: 2px;
+    -fx-border-width: 1.5px;
     -fx-border-color: #E6E6E6;
     -fx-background-insets: 0;
     -fx-border-insets: 0;
@@ -353,12 +353,12 @@
 
 .input-field:focused {
     -fx-border-color: #C3C3C3;
-    -fx-border-width: 2px;
+    -fx-border-width: 1.5px;
 }
 
 .input-field:hover {
     -fx-border-color: #C3C3C3;
-    -fx-border-width: 2px;
+    -fx-border-width: 1.5px;
 }
 
 .error-message {
@@ -441,14 +441,14 @@
     -fx-text-fill: #495057;
     -fx-font-size: 14;
     -fx-font-weight: bold;
-    -fx-padding: 15;
+    -fx-padding: 10;
     -fx-background-radius: 8;
     -fx-border-color: #ced4da;
     -fx-border-width: 1;
     -fx-border-radius: 8;
     -fx-min-width: 180;
     -fx-max-width: Infinity;
-    -fx-min-height: 80;
+    -fx-min-height: 70;
 }
 
 .action-button:hover {
@@ -458,6 +458,32 @@
 
 .action-button:pressed {
     -fx-background-color: derive(#f8f9fa, -10%);
+}
+
+.exit-button {
+    -fx-background-color: -color-primary-lighter;
+    -fx-text-fill: -color-primary;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+    -fx-border-color: derive(-color-primary, 1);
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-min-width: 180;
+    -fx-max-width: Infinity;
+    -fx-min-height: 70;
+}
+
+.exit-button:hover {
+    -fx-text-fill: white;
+    -fx-border-color: -color-primary;
+}
+
+.exit-button:pressed {
+    -fx-background-color: -color-primary-dark;
+    -fx-border-color: -color-primary-dark;
+    -fx-text-fill: white;
 }
 
 .button-icon {
@@ -712,4 +738,84 @@
 
 .custom-checkbox:indeterminate .mark {
     -fx-background-color: transparent;
+}
+
+/* Date Picker Styles */
+.date-picker {
+    -fx-background-color: white;
+    -fx-border-color: #E6E6E6;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-border-width: 2px;
+}
+
+
+.date-picker > .text-field {
+        -fx-background-color: white;
+        -fx-border-radius: 8px;
+        -fx-background-radius: 8px;
+        -fx-padding: 12px 16px;
+        -fx-font-size: 14px;
+        -fx-prompt-text-fill: #a1a1aa;
+        -fx-background-insets: 0;
+        -fx-border-insets: 0;
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: white;
+    -fx-background-radius: 0 6px 6px 0;
+    -fx-padding: 10 20;
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: #52525b;
+}
+
+.date-picker > .arrow-button:hover {
+    -fx-background-color: #f4f4f5;
+}
+
+/* Contenedor principal del popup */
+.date-picker-popup {
+    -fx-background-color: white;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);
+    -fx-padding: 12px;
+}
+
+/* Cabecera del calendario */
+.date-picker-popup > * > .month-year-pane {
+    -fx-background-color: white;
+    -fx-padding: 8px 4px;
+}
+
+/* Botones de navegación (anterior/siguiente) */
+.date-picker-popup > * > .spinner > .button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 6px;
+    -fx-cursor: hand;
+}
+
+.date-picker-popup > * > .spinner > .button:hover {
+    -fx-background-color: #f1f5f9;
+    -fx-background-radius: 4px;
+}
+
+/* Flechas de navegación */
+.date-picker-popup > * > .spinner > .button > .left-arrow,
+.date-picker-popup > * > .spinner > .button > .right-arrow {
+    -fx-background-color: #64748b;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+}
+
+/* Texto del mes y año */
+.date-picker-popup > * > .spinner > .label {
+    -fx-text-fill: #1e293b;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
 }
