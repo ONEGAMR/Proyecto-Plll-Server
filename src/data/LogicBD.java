@@ -210,7 +210,7 @@ public static boolean updateUserBD(String user){
 
                 while (rs.next()) {
                     // Acceder a los valores solo si hay resultados
-                    Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status
+                    Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status, image
                     listOrder.add(order);
                 }
 
@@ -229,7 +229,7 @@ public static boolean updateUserBD(String user){
 
             while (rs.next()) {
                 // Acceder a los valores solo si hay resultados
-                Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status, id
+                Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status, id, image
                 listOrder.add(order);
             }
 

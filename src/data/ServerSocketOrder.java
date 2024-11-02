@@ -26,6 +26,7 @@ public class ServerSocketOrder {
 				Socket clienteSocket = servidorS.accept();
 				System.out.println("Cliente conectado desde: " + clienteSocket.getInetAddress());
 
+
 				// Crear un nuevo hilo para manejar al cliente
 				new ClientHandler(clienteSocket).start();
 			}

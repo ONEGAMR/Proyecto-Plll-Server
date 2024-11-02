@@ -55,8 +55,8 @@ public class Logic {
 		};
 
 		String mealDay = switch (mealType) {
-		case "breakfast" -> MEALS[0];
-		case "lunch" -> MEALS[1];
+		case "Desayuno" -> MEALS[0];
+		case "Almuerzo" -> MEALS[1];
 		default -> null;
 		};
 

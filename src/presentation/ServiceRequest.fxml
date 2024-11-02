@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.image.ImageView?>
 <AnchorPane prefHeight="594.0" prefWidth="598.0" styleClass="root" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.ServiceRequestGUIController">
 	<VBox prefHeight="759.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
@@ -66,6 +67,18 @@
 					<VBox spacing="8">
 						<Label styleClass="field-label" text="* Precio del servicio" />
 						<TextField fx:id="tfPrice" promptText="Ingrese precio" styleClass="input-field" />
+					</VBox>
+
+					<!-- Añadir estos elementos dentro del VBox del formulario en ServiceRequest.fxml -->
+					<VBox spacing="8">
+						<Label styleClass="field-label" text="* Imagen del servicio" />
+						<HBox spacing="10" alignment="CENTER_LEFT">
+							<Button fx:id="btSelectImage" onAction="#handleSelectImage"
+									styleClass="button-white" text="Seleccionar Imagen" />
+							<Label fx:id="lbImagePath" styleClass="image-path-label"
+								   text="Ninguna imagen seleccionada" />
+						</HBox>
+						<ImageView fx:id="ivPreview" styleClass="image-preview" />
 					</VBox>
 
 					<!-- Mensaje de Error -->

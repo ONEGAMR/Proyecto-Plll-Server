@@ -1,9 +1,12 @@
 package data;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import domain.Meal;
@@ -157,7 +160,61 @@ public class LogicServer {
 	public static void saveOrder(String order){
 
 		LogicBD.saveOrder(order);
-		StudentData.updateMoney(order.split(",")[4],Double.parseDouble(order.split(",")[5]));
+		StudentData.updateMoney(order.split(",")[4],Double.parseDouble(order.split(",")[3]));
+	}
+
+	public static void sendAllImages(ClientHandler clientHandler) {
+		File imageDirectory = new File("src/images");
+		if (!imageDirectory.exists() || !imageDirectory.isDirectory()) {
+			System.out.println("Directory src/images not found");
+			return;
+		}
+
+		File[] images = imageDirectory.listFiles((dir, name) ->
+				name.toLowerCase().endsWith(".jpg") ||
+						name.toLowerCase().endsWith(".png") ||
+						name.toLowerCase().endsWith(".jpeg")
+		);
+
+		if (images != null) {
+			// Primero enviamos la cantidad de imágenes que se van a transferir
+			clientHandler.sendMessage("imageCount," + images.length);
+
+			for (File image : images) {
+				try {
+					byte[] imageData = Files.readAllBytes(image.toPath());
+					String base64Image = Base64.getEncoder().encodeToString(imageData);
+
+					// Enviamos el nombre del archivo y los datos de la imagen
+					clientHandler.sendMessage("image," + image.getName() + "," + base64Image);
+
+					// Pequeña pausa para evitar sobrecarga
+					Thread.sleep(100);
+
+				} catch (IOException | InterruptedException e) {
+					System.out.println("Error sending image " + image.getName() + ": " + e.getMessage());
+				}
+			}
+		}
+	}
+
+	public static void sendSpecificImage(ClientHandler clientHandler, String imageName) {
+		File image = new File("src/images/" + imageName);
+		if (!image.exists()) {
+			System.out.println("Image " + imageName + " not found");
+			return;
+		}
+
+		try {
+			byte[] imageData = Files.readAllBytes(image.toPath());
+			String base64Image = Base64.getEncoder().encodeToString(imageData);
+
+			// Enviamos el nombre del archivo y los datos de la imagen
+			clientHandler.sendMessage("singleImage," + image.getName() + "," + base64Image);
+
+		} catch (IOException e) {
+			System.out.println("Error sending image " + imageName + ": " + e.getMessage());
+		}
 	}
 
 }
