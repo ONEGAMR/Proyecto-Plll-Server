@@ -1,1 +1,34 @@
-[{"name":"Casado con pescado","status":null,"price":2000,"cantidad":0,"totalOrder":0,"imagePath":null},{"name":"Casado de pollo","status":null,"price":2400,"cantidad":0,"totalOrder":0,"imagePath":null},{"name":"Panqueques de yuca","status":null,"price":1000,"cantidad":0,"totalOrder":0,"imagePath":null},{"name":"Pizza Jamon y queso","status":null,"price":1600,"cantidad":0,"totalOrder":0,"imagePath":"./src/images/pizza_jamon_y_queso.jpg"}]
+[
+  {
+    "name": "Casado con pescado",
+    "status": null,
+    "price": 2000,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": null
+  },
+  {
+    "name": "Casado de pollo",
+    "status": null,
+    "price": 2400,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": null
+  },
+  {
+    "name": "Panqueques de yuca",
+    "status": null,
+    "price": 1000,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": null
+  },
+  {
+    "name": "Pizza Jamon y queso",
+    "status": null,
+    "price": 1600,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": "./src/images/pizza_jamon_y_queso.jpg"
+  }
+]

@@ -1,10 +1,12 @@
 [
   {
     "name": "Arroz con camarones",
-    "price": 2000
+    "price": 2000,
+    "imagePath": null
   },
   {
     "name": "Vigorón",
-    "price": 1800
+    "price": 1800,
+    "imagePath": null
   }
 ]

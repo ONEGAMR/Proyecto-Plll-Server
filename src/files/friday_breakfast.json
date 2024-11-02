@@ -1,10 +1,12 @@
 [
   {
     "name": "Gallo Pinto con Queso",
-    "price": 1500
+    "price": 1500,
+    "imagePath": null
   },
   {
     "name": "Panqueques de yuca",
-    "price": 1000
+    "price": 1000,
+    "imagePath": null
   }
 ]

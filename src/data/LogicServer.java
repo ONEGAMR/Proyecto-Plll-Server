@@ -101,6 +101,7 @@ public class LogicServer {
 	public static List<Meal> getListMeals(String route){
 		String[] routeParts = route.split(",");
 		String filePath = Logic.getFilePath(routeParts[1], routeParts[2]);
+		System.out.println(filePath);
 		List<Meal> meals = new ArrayList<>();
 
 		if (filePath != null) {

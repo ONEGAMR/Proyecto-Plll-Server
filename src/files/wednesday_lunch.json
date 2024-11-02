@@ -1,10 +1,12 @@
 [
   {
     "name": "Olla de carne",
-    "price": 2000
+    "price": 2000,
+    "imagePath": null
   },
   {
     "name": "Arroz con pollo",
-    "price": 1300
+    "price": 1300,
+    "imagePath": null
   }
 ]

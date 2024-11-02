@@ -1,1 +1,10 @@
-[{"name":"Camarones Refresco (G)","status":null,"price":3000,"cantidad":0,"totalOrder":0}]
+[
+  {
+    "name": "Camarones Refresco (G)",
+    "status": null,
+    "price": 3000,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": null
+  }
+]

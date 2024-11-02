@@ -1,1 +1,34 @@
-[{"name":"Pollo asado","status":null,"price":2500,"cantidad":0,"totalOrder":0,"imagePath":null},{"name":"Hamburguesa Suprema","status":null,"price":5000,"cantidad":0,"totalOrder":0,"imagePath":"./src/images/hamburguesa_suprema.jpg"},{"name":"Pasta Blanca","status":null,"price":2500,"cantidad":0,"totalOrder":0,"imagePath":"./src/images/pasta_blanca.jpg"}]
+[
+  {
+    "name": "Pollo asado",
+    "status": null,
+    "price": 2500,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": "./src/images/hamburguesa_con_papas.jpg"
+  },
+  {
+    "name": "Hamburguesa Suprema",
+    "status": null,
+    "price": 5000,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": "./src/images/hamburguesa_con_papas.jpg"
+  },
+  {
+    "name": "Pasta Blanca",
+    "status": null,
+    "price": 2500,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": "./src/images/hamburguesa_con_papas.jpg"
+  },
+  {
+    "name": "Prueba1",
+    "status": null,
+    "price": 500,
+    "cantidad": 0,
+    "totalOrder": 0,
+    "imagePath": "./src/images/hamburguesa_con_papas.jpg"
+  }
+]

@@ -1,10 +1,12 @@
 [
   {
     "name": "Empanadas de frijol",
-    "price": 700
+    "price": 700,
+    "imagePath": null
   },
   {
     "name": "Pan casero con café",
-    "price": 500
+    "price": 500,
+    "imagePath": null
   }
 ]
