@@ -90,8 +90,8 @@ public class ServiceViewGUIController {
 
 	// Configura los RadioButton
 	private void setupRadioButtons() {
-		rbBreakfast.setUserData("breakfast");
-		rbLunch.setUserData("lunch");
+		rbBreakfast.setUserData("Desayuno");
+		rbLunch.setUserData("Almuerzo");
 	}
 
 	// Configura las columnas de la tabla
@@ -126,6 +126,7 @@ public class ServiceViewGUIController {
 
 		//se obtiene la ruta para las comidas
 		String filePath = Logic.getFilePath(selectedDay, selectedMealType);
+		System.out.println(selectedDay+selectedMealType+" "+filePath);
 
 		if (filePath != null) {
 			Logic.MealsJsonUtils.setFilePath(filePath);

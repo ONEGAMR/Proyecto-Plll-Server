@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" styleClass="root" stylesheets="@application.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="business.ConfirmOrderController">
+
+	<!-- Header Section -->
+	<VBox styleClass="header">
+		<!-- Title Section -->
+		<VBox spacing="8" styleClass="title-container">
+			<Label style="-fx-text-fill: white;" styleClass="main-title" text="Registro de pedidos" />
+			<Label style="-fx-text-fill: white;" styleClass="login-subtitle" text="Gestión de órdenes de pedidos de comida" />
+			<VBox.margin>
+				<Insets left="10.0" />
+			</VBox.margin>
+			<padding>
+				<Insets bottom="10.0" top="10.0" />
+			</padding>
+		</VBox>
+	</VBox>
+
+	<!-- Main Content Container -->
+	<VBox spacing="16.0" VBox.vgrow="ALWAYS">
+		<padding>
+			<Insets bottom="32.0" left="32.0" right="32.0" top="16.0" />
+		</padding>
+
+		<!-- Status ComboBox -->
+		<ComboBox fx:id="cmStatus" maxWidth="Infinity" prefHeight="40.0" promptText="Seleciona un estado para filtrar" styleClass="comboBox-normal" />
+
+		<!-- Orders Table -->
+		<TableView fx:id="tvOrdes" focusTraversable="false" styleClass="modern-table" VBox.vgrow="ALWAYS">
+			<columns>
+				<TableColumn fx:id="tcStudentID" prefWidth="25.0" text="ID" />
+				<TableColumn fx:id="tcNameOrder" text="Pedido" />
+				<TableColumn fx:id="tcNumber" prefWidth="25.0" text="Cantidad" />
+				<TableColumn fx:id="tcTotal" prefWidth="50.0" text="Total" />
+				<TableColumn fx:id="tcStatus" prefWidth="70.0" text="Estado" />
+				<TableColumn fx:id="tcCarnetEs" prefWidth="60.0" text="Carnet" />
+			</columns>
+			<placeholder>
+				<Label fx:id="lbEmptyTableMessage" styleClass="subtitle" text="No hay órdenes registradas" />
+			</placeholder>
+			<columnResizePolicy>
+				<TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+			</columnResizePolicy>
+		</TableView>
+
+		<!-- Action Buttons -->
+		<HBox alignment="CENTER" spacing="8.0">
+			<Button fx:id="btReturn" onAction="#handleReturnAction" prefHeight="40.0" prefWidth="125.0" styleClass="button-white" text="Regresar" />
+			<HBox HBox.hgrow="ALWAYS" />
+			<Button fx:id="btAll" onAction="#allORders" prefWidth="125.0" styleClass="button-white" text="Pendientes" />
+			<Button fx:id="btAddBalance" onAction="#handleAddBalanceAction" prefWidth="140.0" styleClass="button-white" text="Cambiar Estado" />
+			<Button fx:id="btDelete" onAction="#deleteOrder" prefWidth="125.0" styleClass="button-red" text="Eliminar" />
+		</HBox>
+	</VBox>
+</VBox>

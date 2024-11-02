@@ -90,7 +90,7 @@ public class AddBalanceGUIController {
                 ServerSocketOrder.sendMessageToClient(student.getCarnet(), "newBalance,"+newBalance);
                 clearFields();
                 Utils.notifyAction(lbErrorMessage, "Saldo recargado exitosamente.", Color.GREEN);
-                Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) btBack.getScene().getWindow());
+                Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) dpDate.getScene().getWindow());
             } catch (IOException e) {
                 Utils.notifyAction(lbErrorMessage, "Error al guardar la recarga: " + e.getMessage(), Color.RED);
             } catch (Exception e) {
@@ -135,6 +135,6 @@ public class AddBalanceGUIController {
     }
 
     public void handleReturnAction(ActionEvent actionEvent) {
-        Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) btBack.getScene().getWindow());
+        Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) dpDate.getScene().getWindow());
     }
 }

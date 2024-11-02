@@ -55,7 +55,7 @@ public static boolean updateUserBD(String user){
                 isUpdated = true;  // Indicar que la actualización fue exitosa
             }
         } catch (SQLException e) {
-            System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
+            System.out.println("LogicBD.updateUserBD: " + e.getMessage());
         }
 
     }
@@ -81,7 +81,7 @@ public static boolean updateUserBD(String user){
                     isUpdated = true;  // Indicar que la actualización fue exitosa
                 }
             } catch (SQLException e) {
-                System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
+                System.out.println("LogicBD.updateUserBDUs: " + e.getMessage());
             }
 
         return isUpdated;
@@ -102,7 +102,7 @@ public static boolean updateUserBD(String user){
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
+            System.out.println("LogicBD.saveOrder: " + e.getMessage());
         }
     }
 
@@ -210,7 +210,7 @@ public static boolean updateUserBD(String user){
 
                 while (rs.next()) {
                     // Acceder a los valores solo si hay resultados
-                    Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status
+                    Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status, image
                     listOrder.add(order);
                 }
 
@@ -229,7 +229,7 @@ public static boolean updateUserBD(String user){
 
             while (rs.next()) {
                 // Acceder a los valores solo si hay resultados
-                Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status, id
+                Orders order = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5));  // nombre, cantidad, total, status, id, image
                 listOrder.add(order);
             }
 

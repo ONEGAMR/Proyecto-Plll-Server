@@ -39,7 +39,7 @@ public class ViewStudentGUIController {
 
     @FXML
     public void handleReturnAction(ActionEvent event) {
-        Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) lbTitle.getScene().getWindow()));
+        Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) btEdit.getScene().getWindow()));
     }
 
     @FXML
@@ -53,7 +53,7 @@ public class ViewStudentGUIController {
     public void handleEditAction(ActionEvent event) {
         if (selectedStudent != null) {
             Logic.setCurrentStudent(selectedStudent);
-            Logic.closeCurrentWindowAndOpen("/presentation/UpdateStudent.fxml", ((Stage) lbTitle.getScene().getWindow()));
+            Logic.closeCurrentWindowAndOpen("/presentation/UpdateStudent.fxml", ((Stage) btEdit.getScene().getWindow()));
         }
     }
 
