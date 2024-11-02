@@ -1,5 +1,5 @@
 .root {
-    -color-primary: #E83033;
+    -color-primary: #008B76;
     -color-primary-dark: derive(-color-primary, -10%);
     -color-primary-darker: derive(-color-primary, -20%);
     -color-primary-light: derive(-color-primary, 10%);

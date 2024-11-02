@@ -30,7 +30,7 @@ public static User getUserValidate(String id_person) {
             user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));  // id y password, type
         }
     } catch (SQLException e) {
-        System.out.println("LogicBD.getUserID: " + e.getMessage());
+        System.out.println("LogicBD.getUserValidate: " + e.getMessage());
     }
     return user;
 }
@@ -121,7 +121,7 @@ public static boolean updateUserBD(String user){
             stmt.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("LogicBD.updateUserPassword: " + e.getMessage());
+            System.out.println("LogicBD.saveUser: " + e.getMessage());
         }
     }
 
@@ -138,11 +138,11 @@ public static boolean updateUserBD(String user){
             if (result > 0) {
                 System.out.println("User eliminado correctamente.");
             } else {
-                System.out.println("No se encontró el pedido para eliminar.");
+                System.out.println("No se encontró el perfil para eliminar.");
             }
 
         } catch (SQLException e) {
-            System.out.println("LogicBD.deleteOrder: " + e.getMessage());
+            System.out.println("LogicBD.deleteUser: " + e.getMessage());
         }
     }
     public static void deleteOrder(Orders order){
@@ -197,7 +197,7 @@ public static boolean updateUserBD(String user){
                 }
             }
         } catch (SQLException e) {
-            System.out.println("LogicBD.getUserID: " + e.getMessage());
+            System.out.println("LogicBD.getListOrderClient: " + e.getMessage());
         }
         return listOrder;
     }
@@ -215,7 +215,7 @@ public static boolean updateUserBD(String user){
                 }
 
         } catch (SQLException e) {
-            System.out.println("LogicBD.getUserID: " + e.getMessage());
+            System.out.println("LogicBD.getListOrders: " + e.getMessage());
         }
         return listOrder;
     }
@@ -234,7 +234,7 @@ public static boolean updateUserBD(String user){
             }
 
         } catch (SQLException e) {
-            System.out.println("LogicBD.getUserID: " + e.getMessage());
+            System.out.println("LogicBD.getListOrdersStatus: " + e.getMessage());
         }
         return listOrder;
     }
@@ -258,7 +258,7 @@ public static boolean updateUserBD(String user){
                     isUpdated = true;  // Indicar que la actualización fue exitosa
                 }
             } catch (SQLException e) {
-                System.out.println("LogicBD.spUpdateStatus: " + e.getMessage());
+                System.out.println("LogicBD.updateOrderBD: " + e.getMessage());
             }
 
         return isUpdated;
