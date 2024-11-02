@@ -91,7 +91,9 @@ public class AddStudentGUIController {
 	        boolean success = StudentData.saveStudent(student);
 	        if (success) {
 
+				//se crea y agega el usuario a la base de datos
 				LogicBD.saveUser(new User(tfStudentID.getText(), tfPasword.getText(), cmType.getValue(), "Sin foto"));
+
 	            Utils.notifyAction(lbErrorMessage, "Estudiante registrado exitosamente", Color.GREEN);
 	            clearForm();
 	        } else {

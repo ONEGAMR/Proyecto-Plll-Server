@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class LoguinGUIController {
@@ -27,18 +26,20 @@ public class LoguinGUIController {
 	@FXML
 	public void initialize() {
 
+		//Se inicia la conxion con los clientes
 		ServerSocketOrder.runServer();
-		//ConnectionB.getConnection();
 	}
 	
 	@FXML
 	public void btEnter(ActionEvent event) {
 
+		//Validacion de texfield vacios
 		if(tfId.getText().trim().isEmpty() || tfPassword.getText().trim().isEmpty()){
 
 			message.setText("No pueden haber campos vacios");
 		}else if(LogicBD.getUserValidate(tfId.getText()) != null){
 
+			//Se busca el usuario en el servidor y se realizan verificacios de tipo y estado de usuario
 			User user = LogicBD.getUserValidate(tfId.getText());
 
 			if(!StudentData.searchStudent(tfId.getText()).isEstaActivo()){

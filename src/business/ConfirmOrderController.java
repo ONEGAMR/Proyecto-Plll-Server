@@ -40,6 +40,9 @@ public class ConfirmOrderController {
     private Label lbEmptyTableMessage;
 
     @FXML
+    private Label lbErrorMessage;
+
+    @FXML
     private Button btReturn;
 
     @FXML
@@ -63,19 +66,24 @@ public class ConfirmOrderController {
     @FXML
     void deleteOrder(ActionEvent event) {
 
+        //se verifica si hay un elemento seleccionado y se recarga la lista con o sin filtro
         if(selectedOrder != null){
 
             LogicBD.deleteOrder(selectedOrder);
-            if(cmStatus != null){
+
+            if(cmStatus.getValue() != null){
+
                 fillTable(cmStatus.getValue());
             }else {
+
                 fillTable("Pendiente");
             }
 
+            selectedOrder = null;
+
         }else{
 
-            System.out.println("Elija una orden a eliminar");
-
+            Logic.notifyAction("Elija una orden a eliminar" , lbErrorMessage, Color.WHITE);
         }
 
     }
@@ -83,11 +91,14 @@ public class ConfirmOrderController {
     @FXML
     void allORders(ActionEvent event) {
 
+        //se llena la tabala con el filtro de pendientes
         fillTable("Pendiente");
+        selectedOrder = null;
     }
 
     @FXML
     void handleAddBalanceAction(ActionEvent event) {
+        //se verifica si hay un elemento seleccionado y se envia a editar
         if (selectedOrder != null) {
 
             Logic.order = selectedOrder;
@@ -96,11 +107,13 @@ public class ConfirmOrderController {
             Logic.closeCurrentWindowAndOpen("/presentation/UpdateOrder.fxml", ((Stage) btReturn.getScene().getWindow()));
 
         }else{
-            notifyError("No hay pedidos seleccionados");
+
+            Logic.notifyAction("No hay pedidos seleccionados" , lbErrorMessage, Color.WHITE);
         }
     }
 
     public void columTable() {
+        //se inicializan las columnas
        tcStudentID.setCellValueFactory((cellData ->
                new ReadOnlyObjectWrapper<>(tvOrdes.getItems().indexOf(cellData.getValue()) + 1).asString()
        ));
@@ -112,6 +125,7 @@ public class ConfirmOrderController {
     }
 
     public void fillTable(String list) {
+        //se llena la tabla dependiendo del filtro solicitado
         tvOrdes.getItems().clear();
         List<Orders> ordersList;
 
@@ -124,7 +138,6 @@ public class ConfirmOrderController {
             System.out.println(list+ "  estado pasa");
             ordersList = LogicBD.getListOrdersStatus(list);
         }
-
 
         if (!ordersList.isEmpty()) {
 
@@ -140,27 +153,21 @@ public class ConfirmOrderController {
         lbEmptyTableMessage.setTextFill(Color.RED);
     }
 
-    // Asumiendo que tvOrders es tu TableView de tipo TableView<Orders>
+    // Escucha si se selecciona un elemento de la tabla
     public void getSelectedOrder() {
         tvOrdes.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 selectedOrder = newValue;
-                // Aquí puedes trabajar con el nuevo elemento seleccionado
-                System.out.println("Orden seleccionada: " + selectedOrder.toString());
-            } else {
-                System.out.println("No hay ninguna orden seleccionada.");
             }
         });
     }
 
+    //metodo para saber la seleccion de combobox
     public void getSelectedStatus() {
         cmStatus.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
 
                 fillTable(newValue);
-                System.out.println("Orden seleccionada: " + newValue);
-            } else {
-                System.out.println("No hay ningun orden seleccionada.");
             }
         });
     }
@@ -174,6 +181,7 @@ public class ConfirmOrderController {
         getSelectedOrder();
         getSelectedStatus();
 
+        //se llena la lista con el filtro guardado
         if(Logic.fillList(cmStatus)){
             fillTable(Logic.status);
         }

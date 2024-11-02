@@ -1,6 +1,7 @@
 package data;
 
 import domain.Meal;
+import domain.Orders;
 import domain.Recharge;
 
 import java.io.*;
@@ -95,9 +96,9 @@ public class ClientHandler extends Thread {
 
                 if("listOrder".equals(info.get(0))){
                     System.out.println(info.get(0) + "dentra a orders");
-                    for(Meal m : LogicServer.getListMealsOrderClient(answer)){
-                        sendMessage("listOrder,"+ m.toStringMealOrder());
-                        System.out.println(m.toStringMealOrder());
+                    for(Orders o : LogicServer.getListMealsOrderClient(answer)){
+                        sendMessage("listOrder,"+ o.toString());
+                        System.out.println(o.toString());
                     }
                 }
 

@@ -2,6 +2,8 @@ package data;
 
 import com.mysql.cj.x.protobuf.MysqlxCrud;
 import domain.Orders;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -16,7 +18,10 @@ import domain.Student;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import javafx.util.StringConverter;
 
 public class Logic {
@@ -32,6 +37,7 @@ public class Logic {
 	public static Student currentStudent = new Student();
 	public static String filePath;
 	public static String status;
+	public static String date;
 
 	// Getter para obtener el estudiante actualmente seleccionado
 	public static Student getCurrentStudent() {
@@ -140,6 +146,14 @@ public class Logic {
 			return true;
 		}
 		return false;
+	}
+
+	public static void notifyAction(String message, Label noti, Color color) {
+		noti.setText(message);
+		noti.setTextFill(color);
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), e -> noti.setText("")));
+		timeline.setCycleCount(1);
+		timeline.play();
 	}
 
 }

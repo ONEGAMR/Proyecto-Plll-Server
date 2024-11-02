@@ -171,7 +171,7 @@ public static boolean updateUserBD(String user){
     }
 
     public static ArrayList<?> getListOrderClient(String studentId, String status) {
-        ArrayList<Meal> listOrder = new ArrayList<>();
+        ArrayList<Orders> listOrder = new ArrayList<>();
         CallableStatement stmt = null;
         try {
 
@@ -192,7 +192,7 @@ public static boolean updateUserBD(String user){
                 // Usar while para recorrer todos los resultados
                 while (rs.next()) {
                     // Acceder a los valores solo si hay resultados
-                    Meal meal = new Meal(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4));  // nombre, cantidad, total, status
+                    Orders meal = new Orders(rs.getString(1), rs.getInt(2), rs.getInt(3), rs.getString(4));  // nombre, cantidad, total, status
                     listOrder.add(meal);
                 }
             }

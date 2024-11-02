@@ -3,6 +3,7 @@ package business;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ public class ServiceViewGUIController {
 	@FXML private TableColumn<Meal, String> colMealName;
 	@FXML private TableColumn<Meal, Integer> colPrice;
 	@FXML private Label lbEmptyTable;
+	@FXML private Label lbErrorMessage;
 	@FXML private Button btReturn;
 	@FXML private Button btAddMeal;
 	@FXML private Button btEdit;
@@ -35,24 +37,31 @@ public class ServiceViewGUIController {
 		setupTableColumns();
 		setupListeners();
 		getSelectedStatus();
+
+		if(Logic.date != null){
+			updateTableSaved();
+		}
 	}
 	@FXML
 	private void editMeal() {
 
+		//se genera el camino y valida que este seleccionada una comida
 		if(Logic.meal != null){
+
 			generatePath();
 			Logic.closeCurrentWindowAndOpen("/presentation/UpdateMeal.fxml", ((Stage) btAddMeal.getScene().getWindow()));
 		}else{
-			System.out.println("seleccione una meal edit");
+			Logic.notifyAction("seleccione una meal edit", lbErrorMessage, Color.WHITE);
 		}
 
 	}
+
 	public void generatePath(){
 		String selectedDay = cbReservationDay.getValue();
 		String selectedMealType = mealTimeGroup.getSelectedToggle() != null ?
 				(String) mealTimeGroup.getSelectedToggle().getUserData() : null;
 
-
+		Logic.date =selectedDay+","+selectedMealType;
 		Logic.filePath = Logic.getFilePath(selectedDay, selectedMealType);
 	}
 
@@ -66,7 +75,7 @@ public class ServiceViewGUIController {
 			updateTable();
 			Logic.meal = null;
 		}else{
-			System.out.println("seleccione una meal delete ");
+			Logic.notifyAction("seleccione una meal delete ", lbErrorMessage, Color.WHITE);
 		}
 
 	}
@@ -81,9 +90,6 @@ public class ServiceViewGUIController {
 			if (newValue != null) {
 
 				Logic.meal = newValue;
-				System.out.println("Meal seleccionada: " + newValue.toStringMealData());
-			} else {
-				System.out.println("No hay ningun meal seleccionada.");
 			}
 		});
 	}
@@ -112,6 +118,32 @@ public class ServiceViewGUIController {
 		mealTimeGroup.selectedToggleProperty().addListener((obs, oldVal, newVal) -> updateTable());
 	}
 
+
+
+	// Actualiza la tabla de comidas según los filtros seleccionados
+	private void updateTableSaved() {
+		//se obtiene la ruta para las comidas
+		String filePath = Logic.getFilePath(Logic.date.split(",")[0], Logic.date.split(",")[1]);
+		if (filePath != null) {
+			Logic.MealsJsonUtils.setFilePath(filePath);
+			System.out.println(filePath);
+			try {
+
+				List<Meal> meals = Logic.MealsJsonUtils.getElements(Meal.class);
+				tvMeals.setItems(FXCollections.observableArrayList(meals));
+				lbEmptyTable.setVisible(meals.isEmpty());
+			} catch (IOException e) {
+
+				e.printStackTrace();
+				lbEmptyTable.setText("Error al cargar los datos.");
+				lbEmptyTable.setVisible(true);
+			}
+		} else {
+			tvMeals.setItems(FXCollections.observableArrayList());
+			lbEmptyTable.setVisible(true);
+		}
+	}
+
 	// Actualiza la tabla de comidas según los filtros seleccionados
 	private void updateTable() {
 		String selectedDay = cbReservationDay.getValue();
@@ -126,7 +158,6 @@ public class ServiceViewGUIController {
 
 		//se obtiene la ruta para las comidas
 		String filePath = Logic.getFilePath(selectedDay, selectedMealType);
-		System.out.println(selectedDay+selectedMealType+" "+filePath);
 
 		if (filePath != null) {
 			Logic.MealsJsonUtils.setFilePath(filePath);
@@ -150,6 +181,7 @@ public class ServiceViewGUIController {
 
 	@FXML
 	public void handleReturnAction(ActionEvent event) {
+		Logic.date = null;
 		Logic.meal = null;
 		Logic.closeCurrentWindowAndOpen("/presentation/MainGUI.fxml", ((Stage) btReturn.getScene().getWindow()));
 	}

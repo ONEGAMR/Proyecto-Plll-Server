@@ -9,11 +9,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
 
-import domain.Meal;
-import domain.Recharge;
-import domain.Student;
-import domain.User;
-import javafx.collections.FXCollections;
+import domain.*;
 
 public class LogicServer {
 
@@ -120,41 +116,41 @@ public class LogicServer {
 
 
 
-	public static List<Meal> getListMealsOrderClient(String listOrderClient){
+	public static List<Orders> getListMealsOrderClient(String listOrderClient){
 		String[] routeParts = listOrderClient.split(",");
-		List<Meal> meals = new ArrayList<>();
+		List<Orders> orders = new ArrayList<>();
 
 		if(routeParts[2].equals("Todos")){
 			System.out.println(routeParts[2]);
 
-			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Todos");
+			orders = (List<Orders>) LogicBD.getListOrderClient(routeParts[1], "Todos");
 		}
 
 		if(routeParts[2].equals("Pendiente")){
 			System.out.println(routeParts[2]);
 
-			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Pendiente");
+			orders = (List<Orders>) LogicBD.getListOrderClient(routeParts[1], "Pendiente");
 		}
 
 		if(routeParts[2].equals("Preparando")){
 			System.out.println(routeParts[2]);
 
-			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Preparando");
+			orders = (List<Orders>) LogicBD.getListOrderClient(routeParts[1], "Preparando");
 		}
 
 		if(routeParts[2].equals("Listo")){
 			System.out.println(routeParts[2]);
 
-			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Listo");
+			orders = (List<Orders>) LogicBD.getListOrderClient(routeParts[1], "Listo");
 		}
 
 		if(routeParts[2].equals("Entregado")){
 			System.out.println(routeParts[2]);
 
-			meals = (List<Meal>) LogicBD.getListOrderClient(routeParts[1], "Entregado");
+			orders = (List<Orders>) LogicBD.getListOrderClient(routeParts[1], "Entregado");
 		}
 
-		return meals;
+		return orders;
 	}
 
 	public static void saveOrder(String order){

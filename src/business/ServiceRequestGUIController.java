@@ -39,6 +39,7 @@ public class ServiceRequestGUIController {
     @FXML private Label lbPrice;
     @FXML private TextField tfPrice;
     @FXML private Label lbErrorMessage;
+
     @FXML private Button btReturn;
     @FXML private Button btSave;
 
@@ -130,6 +131,7 @@ public class ServiceRequestGUIController {
 
                 Meal meal = new Meal(name, price, imagePath);
 
+                //se guarda la comida en el json dependiendo del filtro
                 filePath = Logic.getFilePath(day, type);
                 Logic.MealsJsonUtils.setFilePath(filePath);
                 Logic.MealsJsonUtils.saveElement(meal);

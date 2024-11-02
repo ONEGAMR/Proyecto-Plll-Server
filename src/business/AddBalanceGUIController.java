@@ -35,6 +35,7 @@ public class AddBalanceGUIController {
     // Método de inicialización llamado por el sistema FXML
     @FXML
     private void initialize() {
+
         // Configura el formato del DatePicker
         Logic.configureDatePicker(dpDate);
     }
@@ -86,14 +87,18 @@ public class AddBalanceGUIController {
             try {
                 Logic.RechargesJsonUtils.saveElement(recharge);
                 updateStudentBalance(student, newBalance);
+
                 //se envia al cliente el nuevo balance
                 ServerSocketOrder.sendMessageToClient(student.getCarnet(), "newBalance,"+newBalance);
+
                 clearFields();
                 Utils.notifyAction(lbErrorMessage, "Saldo recargado exitosamente.", Color.GREEN);
                 Logic.closeCurrentWindowAndOpen("/presentation/RechargesRegister.fxml", (Stage) dpDate.getScene().getWindow());
             } catch (IOException e) {
+
                 Utils.notifyAction(lbErrorMessage, "Error al guardar la recarga: " + e.getMessage(), Color.RED);
             } catch (Exception e) {
+
                 Utils.notifyAction(lbErrorMessage, "Ocurrió un error inesperado: " + e.getMessage(), Color.RED);
             }
         }

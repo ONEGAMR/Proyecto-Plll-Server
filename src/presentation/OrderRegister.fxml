@@ -17,6 +17,7 @@
 		<VBox spacing="8" styleClass="title-container">
 			<Label style="-fx-text-fill: white;" styleClass="main-title" text="Registro de pedidos" />
 			<Label style="-fx-text-fill: white;" styleClass="login-subtitle" text="Gestión de órdenes de pedidos de comida" />
+         <Label fx:id="lbErrorMessage" prefHeight="17.0" prefWidth="769.0" />
 			<VBox.margin>
 				<Insets left="10.0" />
 			</VBox.margin>
