@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import data.ClientHandler;
 import data.Logic;
 import data.Utils;
 import domain.Meal;
@@ -48,7 +49,7 @@ public class ServiceRequestGUIController {
     @FXML
     public void initialize() {
         cbServiceDay.setItems(FXCollections.observableArrayList(
-                "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"
+                "Lunes", "Martes", "Miércoles", "Jueves", "Viernes"
         ));
 
         // Configurar el ImageView para la vista previa
@@ -135,6 +136,11 @@ public class ServiceRequestGUIController {
                 filePath = Logic.getFilePath(day, type);
                 Logic.MealsJsonUtils.setFilePath(filePath);
                 Logic.MealsJsonUtils.saveElement(meal);
+
+
+                ClientHandler clientHandler = new ClientHandler();
+                String imagePat = meal.getImagePath();
+                clientHandler.sendImage(imagePat);
 
                 Utils.showAlert(Alert.AlertType.INFORMATION, "Registro Exitoso",
                         "Nombre: " + name + "\nPrecio: ₡" + price);

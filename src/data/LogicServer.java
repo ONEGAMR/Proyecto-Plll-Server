@@ -156,7 +156,6 @@ public class LogicServer {
 	public static void saveOrder(String order){
 
 		LogicBD.saveOrder(order);
-		StudentData.updateMoney(order.split(",")[4],Double.parseDouble(order.split(",")[3]));
 	}
 
 	public static void sendAllImages(ClientHandler clientHandler) {
@@ -194,23 +193,21 @@ public class LogicServer {
 		}
 	}
 
-	public static void sendSpecificImage(ClientHandler clientHandler, String imageName) {
-		File image = new File("src/images/" + imageName);
-		if (!image.exists()) {
-			System.out.println("Image " + imageName + " not found");
-			return;
-		}
+	public static void updateClientMoney(String id, double dude){
 
-		try {
-			byte[] imageData = Files.readAllBytes(image.toPath());
-			String base64Image = Base64.getEncoder().encodeToString(imageData);
+        List<Student> studentList = StudentData.getStudentList();
 
-			// Enviamos el nombre del archivo y los datos de la imagen
-			clientHandler.sendMessage("singleImage," + image.getName() + "," + base64Image);
+        for (Student s : studentList) {
 
-		} catch (IOException e) {
-			System.out.println("Error sending image " + imageName + ": " + e.getMessage());
-		}
-	}
+            if (s.getCarnet().equals(id)) {
+
+                double newBalance = s.getDineroDisponible() - dude;
+                s.setDineroDisponible(newBalance);
+                break;
+            }
+        }
+
+        StudentData.updateJson(studentList);
+    }
 
 }

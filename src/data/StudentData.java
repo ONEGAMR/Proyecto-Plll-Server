@@ -59,6 +59,7 @@ public class StudentData {
         ArrayList<Student> list = (ArrayList<Student>) StudentData.getStudentList();
         for (Student s : list) {
             if (s.getCarnet().equals(updatedStudent)) {
+
                 s.setDineroDisponible(money);
                 StudentData.updateJson(list);
                 return true;

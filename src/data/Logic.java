@@ -11,6 +11,8 @@ import javafx.scene.control.DatePicker;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 import domain.Meal;
 import domain.Recharge;
@@ -128,7 +130,7 @@ public class Logic {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return date.format(formatter);
     }
-    
+    //Validacion de fecha
     public static String validateDateNotInFuture(LocalDate date) {
         if (date == null) {
             return "La fecha no puede estar vacía";

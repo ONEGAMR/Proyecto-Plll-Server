@@ -3,6 +3,7 @@ package data;
 import java.sql.Connection;  // Importa la interfaz Connection
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class ConnectionB {
 
@@ -14,9 +15,9 @@ public class ConnectionB {
     private static final String host = "localhost"; 
     private static final String url = "jdbc:mysql://" + host + ":" + port + "/" + database; 
     
-    private static Connection con;  // Cambiar el tipo a Connection
+    private static Connection con;
 
-    public static Connection getConnection() {  // Cambiar el tipo de retorno a Connection
+    public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -30,7 +31,34 @@ public class ConnectionB {
             System.out.println("Error de conexión: " + e.getMessage());
         }
 
-        return con;  // Retornar la conexión
+        return con;
+    }
+
+    public static boolean testConnection() {
+        try {
+            // Si ya existe una conexión, verificamos si es válida
+            if (con != null && !con.isClosed()) {
+                // Intentamos hacer una consulta simple para verificar la conexión
+                try (Statement stmt = con.createStatement()) {
+                    stmt.execute("SELECT 1");
+                   // System.out.println("Conexión existente verificada exitosamente");
+                    return true;
+                }
+            }
+
+            // Si no hay conexión, intentamos crear una nueva
+            Connection testCon = DriverManager.getConnection(url, user, pass);
+            if (testCon != null) {
+                //System.out.println("Nueva conexión establecida exitosamente");
+                testCon.close();
+                return true;
+            }
+            return false;
+
+        } catch (SQLException e) {
+           // System.err.println("Error al verificar la conexión: " + e.getMessage());
+            return false;
+        }
     }
 }
 

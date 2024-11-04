@@ -4,10 +4,10 @@ public class Orders extends Meal{
     private String name;
     private String status;
     private int cantidad;
-    private int totalOrder;
+    private Double totalOrder;
     private String idStudent;
 
-    public Orders(String name, int cantidad, int totalOrder, String status, String idStudent) {
+    public Orders(String name, int cantidad, Double totalOrder, String status, String idStudent) {
         super();
         this.name = name;
         this.status = status;
@@ -16,7 +16,7 @@ public class Orders extends Meal{
         this.idStudent = idStudent;
     }
 
-    public Orders(String name, int cantidad, int totalOrder, String status) {
+    public Orders(String name, int cantidad, Double totalOrder, String status) {
         super();
         this.name = name;
         this.status = status;
@@ -50,11 +50,11 @@ public class Orders extends Meal{
         this.cantidad = cantidad;
     }
 
-    public int getTotalOrder() {
+    public Double getTotalOrder() {
         return totalOrder;
     }
 
-    public void setTotalOrder(int totalOrder) {
+    public void setTotalOrder(Double totalOrder) {
         this.totalOrder = totalOrder;
     }
 

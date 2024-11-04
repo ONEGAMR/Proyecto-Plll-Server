@@ -1,5 +1,6 @@
 package business;
 
+import data.Utils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -39,6 +40,16 @@ public class ServiceViewGUIController {
 		getSelectedStatus();
 
 		if(Logic.date != null){
+
+			cbReservationDay.setValue(Logic.date.split(",")[0]);
+			String mealTime = Logic.date.split(",")[1];
+
+			if (mealTime.equals("Desayuno")) {
+				mealTimeGroup.selectToggle(rbBreakfast);
+			} else if (mealTime.equals("Almuerzo")) {
+				mealTimeGroup.selectToggle(rbLunch);
+			}
+
 			updateTableSaved();
 		}
 	}
@@ -68,12 +79,20 @@ public class ServiceViewGUIController {
 	@FXML
 	private void deleteMeal() throws IOException {
 		if(Logic.meal != null){
-			generatePath();
 
-			Logic.MealsJsonUtils.setFilePath(Logic.filePath);
-			Logic.MealsJsonUtils.deleteMeal(Logic.meal.getName());
-			updateTable();
-			Logic.meal = null;
+			String confirmationTitle = "¿Está seguro de desea eliminar el servicio?";
+			String confirmationContent = Logic.meal.getName();
+
+			boolean isConfirmed = Utils.showConfirmationAlert(confirmationTitle, confirmationContent);
+
+			if(isConfirmed) {
+				generatePath();
+
+				Logic.MealsJsonUtils.setFilePath(Logic.filePath);
+				Logic.MealsJsonUtils.deleteMeal(Logic.meal.getName());
+				updateTable();
+				Logic.meal = null;
+			}
 		}else{
 			Logic.notifyAction("seleccione una meal delete ", lbErrorMessage, Color.WHITE);
 		}
@@ -188,6 +207,11 @@ public class ServiceViewGUIController {
 
 	@FXML
 	public void handleAddMealAction(ActionEvent event) {
+
+		if(cbReservationDay.getValue() != null && mealTimeGroup.getSelectedToggle() != null) {
+			generatePath();
+		}
+
 		Logic.closeCurrentWindowAndOpen("/presentation/ServiceRequest.fxml", ((Stage) btAddMeal.getScene().getWindow()));
 	}
 

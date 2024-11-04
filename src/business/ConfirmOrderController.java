@@ -2,6 +2,7 @@ package business;
 
 import data.Logic;
 import data.LogicBD;
+import data.Utils;
 import domain.Orders;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
 import java.util.List;
 
 public class ConfirmOrderController {
@@ -69,17 +71,24 @@ public class ConfirmOrderController {
         //se verifica si hay un elemento seleccionado y se recarga la lista con o sin filtro
         if(selectedOrder != null){
 
-            LogicBD.deleteOrder(selectedOrder);
+            String confirmationTitle = "¿Está seguro de desea eliminar el pedio?";
+            String confirmationContent = selectedOrder.getName() + " Cliente: " + selectedOrder.getIdStudent();
 
-            if(cmStatus.getValue() != null){
+            boolean isConfirmed = Utils.showConfirmationAlert(confirmationTitle, confirmationContent);
 
-                fillTable(cmStatus.getValue());
-            }else {
+            if(isConfirmed) {
+                LogicBD.deleteOrder(selectedOrder);
 
-                fillTable("Pendiente");
+                if (cmStatus.getValue() != null) {
+
+                    fillTable(cmStatus.getValue());
+                } else {
+
+                    fillTable("Pendiente");
+                }
+
+                selectedOrder = null;
             }
-
-            selectedOrder = null;
 
         }else{
 
@@ -133,7 +142,6 @@ public class ConfirmOrderController {
 
             ordersList = LogicBD.getListOrders();
         }else {
-
 
             System.out.println(list+ "  estado pasa");
             ordersList = LogicBD.getListOrdersStatus(list);

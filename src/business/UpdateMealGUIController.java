@@ -75,7 +75,6 @@ public class UpdateMealGUIController {
                 int price = Integer.parseInt(tfPrice.getText().trim());
                 Meal meal = new Meal(name, price,"");
 
-                System.out.println("Desde updateMEal "+ meal.toStringMealData());
                 Logic.MealsJsonUtils.setFilePath(Logic.filePath);
                 //se actualiza
                 Logic.MealsJsonUtils.updateMeal(meal, Logic.meal.getName());
