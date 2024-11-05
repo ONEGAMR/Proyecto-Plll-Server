@@ -141,6 +141,8 @@ public class ServiceRequestGUIController {
                 ClientHandler clientHandler = new ClientHandler();
                 String imagePat = meal.getImagePath();
                 clientHandler.sendImage(imagePat);
+                System.out.println("En agregar: "+imagePat);
+
 
                 Utils.showAlert(Alert.AlertType.INFORMATION, "Registro Exitoso",
                         "Nombre: " + name + "\nPrecio: ₡" + price);

@@ -62,7 +62,7 @@ public class ServiceViewGUIController {
 			generatePath();
 			Logic.closeCurrentWindowAndOpen("/presentation/UpdateMeal.fxml", ((Stage) btAddMeal.getScene().getWindow()));
 		}else{
-			Logic.notifyAction("seleccione una meal edit", lbErrorMessage, Color.WHITE);
+			Logic.showPopupMessage("Selecione una comida para editar");
 		}
 
 	}
@@ -88,13 +88,14 @@ public class ServiceViewGUIController {
 			if(isConfirmed) {
 				generatePath();
 
+				Logic.deleteSpecificImage(Logic.meal.getImagePath());
 				Logic.MealsJsonUtils.setFilePath(Logic.filePath);
 				Logic.MealsJsonUtils.deleteMeal(Logic.meal.getName());
 				updateTable();
 				Logic.meal = null;
 			}
 		}else{
-			Logic.notifyAction("seleccione una meal delete ", lbErrorMessage, Color.WHITE);
+			Logic.showPopupMessage("seleccione una comida para eliminar");
 		}
 
 	}

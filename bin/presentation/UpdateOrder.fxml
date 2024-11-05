@@ -40,19 +40,19 @@
 					<!-- Nombre del Servicio -->
 					<VBox spacing="8">
 						<Label styleClass="field-label" text="Nombre del Servicio" />
-						<TextField fx:id="tfName" promptText="Nombre del servicio" styleClass="input-field" />
+						<TextField fx:id="tfName" disable="true" promptText="Nombre del servicio" styleClass="input-field" />
 					</VBox>
 
 					<!-- Precio -->
 					<VBox spacing="8">
 						<Label styleClass="field-label" text="Precio del Servicio" />
-						<TextField fx:id="tfPrice" promptText="Precio del servicio" styleClass="input-field" />
+						<TextField fx:id="tfPrice" disable="true" promptText="Precio del servicio" styleClass="input-field" />
 					</VBox>
 
 					<!-- Cliente -->
 					<VBox spacing="8">
 						<Label styleClass="field-label" text="Cliente" />
-						<TextField fx:id="tfCarnet" promptText="Carné del cliente" styleClass="input-field" />
+						<TextField fx:id="tfCarnet" disable="true" promptText="Carné del cliente" styleClass="input-field" />
 					</VBox>
 
 					<!-- Mensaje de Error -->

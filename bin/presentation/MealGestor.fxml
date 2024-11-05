@@ -19,9 +19,8 @@
 		<VBox>
 			<Label styleClass="label-Title" text="Gestión de Alimentos" />
 			<Label style="-fx-text-fill: white; -fx-font-size: 16px;" text="Administra el menú de alimentos disponibles" />
-         <Label fx:id="lbErrorMessage" prefHeight="17.0" prefWidth="756.0" />
          <padding>
-            <Insets bottom="8.0" left="4.0" top="8.0" />
+            <Insets bottom="4.0" left="4.0" top="4.0" />
          </padding>
 		</VBox>
       <VBox.margin>

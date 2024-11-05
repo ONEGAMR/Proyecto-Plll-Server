@@ -56,6 +56,9 @@ public class ViewStudentGUIController {
             Logic.setCurrentStudent(selectedStudent);
             Logic.closeCurrentWindowAndOpen("/presentation/UpdateStudent.fxml", ((Stage) btEdit.getScene().getWindow()));
         }
+        else{
+            Logic.showPopupMessage("Seleccione un estudiante para editar");
+        }
     }
 
     @FXML

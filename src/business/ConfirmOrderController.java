@@ -92,7 +92,7 @@ public class ConfirmOrderController {
 
         }else{
 
-            Logic.notifyAction("Elija una orden a eliminar" , lbErrorMessage, Color.WHITE);
+            Logic.showPopupMessage("Elija una orden a eliminar");
         }
 
     }
@@ -117,7 +117,7 @@ public class ConfirmOrderController {
 
         }else{
 
-            Logic.notifyAction("No hay pedidos seleccionados" , lbErrorMessage, Color.WHITE);
+            Logic.showPopupMessage("No hay pedidos seleccionados");
         }
     }
 

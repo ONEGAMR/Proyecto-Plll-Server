@@ -17,12 +17,11 @@
 		<VBox spacing="8" styleClass="title-container">
 			<Label style="-fx-text-fill: white;" styleClass="main-title" text="Registro de pedidos" />
 			<Label style="-fx-text-fill: white;" styleClass="login-subtitle" text="Gestión de órdenes de pedidos de comida" />
-         <Label fx:id="lbErrorMessage" prefHeight="17.0" prefWidth="769.0" />
 			<VBox.margin>
 				<Insets left="10.0" />
 			</VBox.margin>
 			<padding>
-				<Insets bottom="10.0" top="10.0" />
+				<Insets bottom="4.0" top="4.0" />
 			</padding>
 		</VBox>
 	</VBox>

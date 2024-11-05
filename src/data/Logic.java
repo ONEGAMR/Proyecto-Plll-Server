@@ -9,6 +9,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -36,6 +39,7 @@ public class Logic {
 	public static Meal meal;
 	public static final JSONUtils<Meal> MealsJsonUtils = new JSONUtils<>();
 	public static final JSONUtils<Recharge> RechargesJsonUtils = new JSONUtils<>(FILE_NAME);
+	private static final String IMAGE_DIRECTORY = "src/images/";
 	public static Student currentStudent = new Student();
 	public static String filePath;
 	public static String status;
@@ -150,12 +154,57 @@ public class Logic {
 		return false;
 	}
 
-	public static void notifyAction(String message, Label noti, Color color) {
-		noti.setText(message);
-		noti.setTextFill(color);
-		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), e -> noti.setText("")));
-		timeline.setCycleCount(1);
-		timeline.play();
+	public static void showPopupMessage(String message) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+		alert.setTitle("Mensaje");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+
+	public static boolean deleteSpecificImage(String imagePath) {
+		try {
+			// Limpiamos la ruta de caracteres extra si los hay
+			imagePath = imagePath.replace("./", "");
+
+			// Crear el objeto Path
+			Path path = Paths.get(imagePath);
+
+			// Verificar que el archivo existe
+			if (!Files.exists(path)) {
+				System.err.println("Error: No se encuentra la imagen a eliminar en: " + path.toString());
+				// Intentar con ruta absoluta
+				path = Paths.get(System.getProperty("user.dir"), imagePath);
+				if (!Files.exists(path)) {
+					System.err.println("Error: Tampoco se encuentra en ruta absoluta: " + path.toString());
+					return false;
+				}
+			}
+
+			// Verificar permisos de escritura
+			if (!Files.isWritable(path)) {
+				System.err.println("Error: No hay permisos para eliminar la imagen en: " + path.toString());
+				return false;
+			}
+
+			// Eliminar el archivo
+			Files.delete(path);
+
+			System.out.println("Imagen eliminada exitosamente: " + path.toString());
+			return true;
+
+		} catch (SecurityException e) {
+			System.err.println("Error de seguridad al eliminar la imagen: " + e.getMessage());
+			return false;
+		} catch (IOException e) {
+			System.err.println("Error al eliminar la imagen: " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		} catch (Exception e) {
+			System.err.println("Error inesperado al eliminar: " + e.getMessage());
+			e.printStackTrace();
+			return false;
+		}
 	}
 
 }
